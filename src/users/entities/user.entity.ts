@@ -2,30 +2,32 @@ import {
     Column,
     DeleteDateColumn,
     Entity,
-    PrimaryGeneratedColumn,
-  } from "typeorm";
+    PrimaryGeneratedColumn
+   } from "typeorm";
+   import { Exclude } from 'class-transformer';
   
   @Entity()
   export class User {
     @PrimaryGeneratedColumn()
     id: number;
   
-    @Column()
+    @Column({type:'varchar',length:100,nullable:false})
     name: string;
   
-    @Column()
+    @Column({type:'varchar',length:100,nullable:false})
     primer_apellido: string;
   
-    @Column()
+    @Column({type:'varchar',length:100,nullable:false})
     segundo_apellido: string;
 
-    @Column()
+    @Column({type:'varchar',length:20,nullable:false})
     user_name:string;
 
-    @Column()
+    @Column({nullable:false,type:'varchar',length:255, select: false })
+    @Exclude({ toPlainOnly: true })
     password:string;
 
-    @Column()
+    @Column({unique:true,nullable:false,type:'varchar',length:50})
     email:string;
 
     @DeleteDateColumn()
