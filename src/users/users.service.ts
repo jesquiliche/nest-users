@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException,NotFoundException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -48,14 +48,33 @@ export class UsersService {
   }
 
   async findOne(id: number) {
-    return await this.usersRepository.findOneBy({ id });
+    const user = await this.usersRepository.findOne({ where: { id } });
+
+    if (!user) {
+      throw new NotFoundException('Usuario no encontrado');
+    }
+
+    return user;
   }
 
   async update(id: number, updateUseuDto: UpdateUserDto) {
+    const user = await this.usersRepository.findOne({ where: { id } });
+
+    if (!user) {
+      throw new NotFoundException('Usuario no encontrado');
+    }
     return await this.usersRepository.update(id, updateUseuDto);
   }
 
   async remove(id: number) {
+    // Verificar si el usuario existe antes de intentar eliminarlo
+    const user = await this.usersRepository.findOne({ where: { id } });
+
+    if (!user) {
+      throw new NotFoundException('Usuario no encontrado');
+    }
+
+    // Eliminar el usuario
     return await this.usersRepository.delete(id);
   }
 }
