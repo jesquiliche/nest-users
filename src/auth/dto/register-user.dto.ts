@@ -1,13 +1,13 @@
 import { MinLength,IsString, IsNotEmpty, MaxLength, IsEmail } from "class-validator";
 import { Transform } from 'class-transformer';
 
-export class CreateUserDto {
+export class RegisterUserDto {
   
     @IsNotEmpty()
     @Transform(({ value }) => value.trim())
     @IsString()
     @MinLength(3)
-
+    @MaxLength(100)
     name: string;
   
     @IsNotEmpty()

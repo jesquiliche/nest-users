@@ -23,8 +23,8 @@ import {
     @Column({type:'varchar',length:20,nullable:false})
     user_name:string;
 
-    @Column({nullable:false,type:'varchar',length:255, select: false })
-    @Exclude({ toPlainOnly: true })
+    @Column({nullable:false,type:'varchar',length:255, select: true })
+    
     password:string;
 
     @Column({unique:true,nullable:false,type:'varchar',length:50})

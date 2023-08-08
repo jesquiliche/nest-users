@@ -77,5 +77,10 @@ export class UsersService {
     // Eliminar el usuario
     return await this.usersRepository.delete(id);
   }
+
+  findOneByEmail(email: string) {
+    return this.usersRepository.findOneBy({ email });
+  }
+
 }
 
