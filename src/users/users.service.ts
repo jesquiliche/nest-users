@@ -79,7 +79,7 @@ export class UsersService {
   }
 
   findOneByEmail(email: string) {
-    return this.usersRepository.findOneBy({ email });
+    return this.usersRepository.findOne({ where: { email }, select: ['id', 'email','password'] });
   }
 
 }

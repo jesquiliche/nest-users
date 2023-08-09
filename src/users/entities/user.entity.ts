@@ -4,7 +4,7 @@ import {
     Entity,
     PrimaryGeneratedColumn
    } from "typeorm";
-   import { Exclude } from 'class-transformer';
+   
   
   @Entity()
   export class User {
@@ -23,12 +23,15 @@ import {
     @Column({type:'varchar',length:20,nullable:false})
     user_name:string;
 
-    @Column({nullable:false,type:'varchar',length:255, select: true })
+    @Column({nullable:false,type:'varchar',length:255, select: false })
     
     password:string;
 
     @Column({unique:true,nullable:false,type:'varchar',length:50})
     email:string;
+
+    @Column({ default: 'user',length:15,type:'varchar' })
+    role: string;
 
     @DeleteDateColumn()
     deletedAt: Date;

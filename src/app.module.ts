@@ -2,6 +2,10 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UsersModule} from "./users/users.module";
 import { AuthModule } from './auth/auth.module';
+import { CategoriasModule } from './categorias/categorias.module';
+import { SubcategoriasModule } from './subcategorias/subcategorias.module';
+import { EstadosModule } from './estados/estados.module';
+import { PoblacionesModule } from './poblaciones/poblaciones.module';
 
 @Module({
   imports: [
@@ -17,6 +21,10 @@ import { AuthModule } from './auth/auth.module';
       synchronize: true,
     }),
     AuthModule,
+    CategoriasModule,
+    SubcategoriasModule,
+    EstadosModule,
+    PoblacionesModule,
   ],
   controllers: [],
   providers: [],
