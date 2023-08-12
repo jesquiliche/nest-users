@@ -6,6 +6,7 @@ import { CategoriasModule } from './categorias/categorias.module';
 import { SubcategoriasModule } from './subcategorias/subcategorias.module';
 import { EstadosModule } from './estados/estados.module';
 import { PoblacionesModule } from './poblaciones/poblaciones.module';
+import { AnunciosModule } from './anuncios/anuncios.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { PoblacionesModule } from './poblaciones/poblaciones.module';
     SubcategoriasModule,
     EstadosModule,
     PoblacionesModule,
+    AnunciosModule,
   ],
   controllers: [],
   providers: [],

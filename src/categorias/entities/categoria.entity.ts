@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import { Anuncio } from 'src/anuncios/entities/anuncio.entity';
 
 @Entity('categorias') // Reemplaza 'tu_tabla' con el nombre de tu tabla real
-export class Categorias {
+export class Categoria {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: number;
 
@@ -14,9 +15,4 @@ export class Categorias {
   @Column({ type: 'varchar', length: 255 })
   imagen: string;
 
-  @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
-  createdAt: Date;
-
-  @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
-  updatedAt: Date;
 }

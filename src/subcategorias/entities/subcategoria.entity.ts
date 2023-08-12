@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, OneToMany } from 'typeorm';
-
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { Anuncio } from 'src/anuncios/entities/anuncio.entity';
 
 @Entity('subcategorias')
 export class Subcategoria {
@@ -12,4 +12,6 @@ export class Subcategoria {
   @Column({ type: 'text' })
   descripcion: string;
 
+  @OneToMany(() => Anuncio, anuncio => anuncio.subcategoria)
+  anuncios: Anuncio[];
 }
