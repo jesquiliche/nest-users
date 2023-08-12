@@ -2,9 +2,10 @@ import {
     Column,
     DeleteDateColumn,
     Entity,
-    PrimaryGeneratedColumn
+    PrimaryGeneratedColumn,
+    OneToMany
    } from "typeorm";
-   
+import { Anuncio } from "src/anuncios/entities/anuncio.entity";   
   
   @Entity()
   export class User {
@@ -32,6 +33,9 @@ import {
 
     @Column({ default: 'user',length:15,type:'varchar' })
     role: string;
+
+    @OneToMany(() => Anuncio, anuncio => anuncio.user)
+    anuncios: Anuncio[];
 
     @DeleteDateColumn()
     deletedAt: Date;

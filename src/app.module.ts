@@ -7,6 +7,7 @@ import { SubcategoriasModule } from './subcategorias/subcategorias.module';
 import { EstadosModule } from './estados/estados.module';
 import { PoblacionesModule } from './poblaciones/poblaciones.module';
 import { AnunciosModule } from './anuncios/anuncios.module';
+import { ProvinciasModule } from './provincias/provincias.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { AnunciosModule } from './anuncios/anuncios.module';
     EstadosModule,
     PoblacionesModule,
     AnunciosModule,
+    ProvinciasModule,
   ],
   controllers: [],
   providers: [],

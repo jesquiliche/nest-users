@@ -1,7 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,JoinColumn } from 'typeorm';
 import { Categoria } from 'src/categorias/entities/categoria.entity'
 import { Subcategoria } from 'src/subcategorias/entities/subcategoria.entity';
 import { Estado } from 'src/estados/entities/estado.entity';
+import { User } from 'src/users/entities/user.entity';
+import { Poblacion } from 'src/poblaciones/entities/poblaciones.entity';
 
 @Entity('anuncios')
 export class Anuncio {
@@ -41,12 +43,23 @@ export class Anuncio {
   })
   estado: Estado;
 
+  @ManyToOne(() => User, user => user.id,{
+    // cascade: true,
+    eager: true, // para que traiga las raza al hacer un findOne
+  })
+  user: User;
+
+
 
   @Column({ length: 2 })
   provincia: string;
 
   @Column({ length: 5 })
   cod_postal: string;
+
+  @ManyToOne(() => Poblacion, poblacion => poblacion.anuncios)
+  @JoinColumn({ name: 'cod_postal', referencedColumnName: 'codigo' })
+  poblacion: Poblacion;
   
 }
 
