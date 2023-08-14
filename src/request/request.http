@@ -62,9 +62,38 @@ Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 {
- 
     "password":"123456",
     "email":"garcia@gmail.com"
- 
- 
+
+}
+
+### listado de categorías
+GET http://localhost:3000/api/v1/categorias
+Content-Type: application/json
+
+### Vista de una categoría por su id
+GET http://localhost:3000/api/v1/categorias/1
+Content-Type: application/json
+
+
+### listado de categorías
+POST http://localhost:3000/api/v1/categorias
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nombre":"Televisores",
+    "descripcion":"Descripción de Televisores ",
+    "imagen":"Imagen"
+}
+
+### listado de categorías
+PATCH  http://localhost:3000/api/v1/categorias/2
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nombre":"Televisores PLASMA",
+    "descripcion":"Descripción de Televisores ",
+    "imagen":"Imagen"
 }

@@ -26,24 +26,21 @@ export class Anuncio {
   telefono: string;
 
   
-  @ManyToOne(() => Categoria, categoria => categoria.id,{
-    // cascade: true,
-    eager: true, // para que traiga las raza al hacer un findOne
-  })
+  
 
-  @ManyToOne(() => Subcategoria, subcategoria => subcategoria.id,{
+  @ManyToOne(() => Subcategoria, subcategoria => subcategoria.anuncios,{
     // cascade: true,
     eager: true, // para que traiga las raza al hacer un findOne
   })
   subcategoria: Subcategoria;
 
-  @ManyToOne(() => Estado, estado => estado.id,{
+  @ManyToOne(() => Estado, estado => estado.anuncios,{
     // cascade: true,
     eager: true, // para que traiga las raza al hacer un findOne
   })
   estado: Estado;
 
-  @ManyToOne(() => User, user => user.id,{
+  @ManyToOne(() => User, user => user.anuncios,{
     // cascade: true,
     eager: true, // para que traiga las raza al hacer un findOne
   })

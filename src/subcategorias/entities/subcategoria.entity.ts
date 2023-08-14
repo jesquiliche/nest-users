@@ -16,7 +16,7 @@ export class Subcategoria {
   @OneToMany(() => Anuncio, anuncio => anuncio.subcategoria)
   anuncios: Anuncio[];
 
-  @ManyToOne(() =>Categoria, categoria => categoria.id,{
+  @ManyToOne(() =>Categoria, categoria => categoria.subcategoria,{
     // cascade: true,
     eager: true, // para que traiga las raza al hacer un findOne
   })
