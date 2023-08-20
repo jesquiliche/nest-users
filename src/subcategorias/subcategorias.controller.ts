@@ -27,6 +27,7 @@ export class SubcategoriasController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateSubcategoriaDto: UpdateSubcategoriaDto) {
+    console.log("Entro");
     return this.subcategoriasService.update(+id, updateSubcategoriaDto);
   }
 

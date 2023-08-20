@@ -50,7 +50,7 @@ export class CategoriasService {
     return await this.categoriasRepository.update(id, updateCategoriaDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} categoria`;
+  async remove(id: number) {
+    return await this.categoriasRepository.softDelete(id);
   }
 }

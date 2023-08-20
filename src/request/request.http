@@ -106,6 +106,10 @@ Authorization: Bearer {{accessToken}}
 }
 
 
+### listado de categorías
+DELETE  http://localhost:3000/api/v1/categorias/2
+Content-Type: application/json
+
 ### listado de subcategorías
 GET http://localhost:3000/api/v1/subcategorias
 Content-Type: application/json
@@ -122,3 +126,20 @@ Authorization: Bearer {{accessToken}}
     "imagen":"Imagen",
     "categoria_id":1
 }
+
+### Modificar subcategoría
+PATCH  http://localhost:3000/api/v1/subcategorias/2
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nombre":"Subcategoria de pruebas 2",
+    "descripcion":"Descripción de Televisores ",
+    "imagen":"Imagen",
+    "categoria_id":1
+}
+
+### Modificar subcategoría
+DELETE  http://localhost:3000/api/v1/subcategorias/2
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}

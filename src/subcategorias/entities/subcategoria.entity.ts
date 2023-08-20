@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, DeleteDateColumn } from 'typeorm';
 import { Anuncio } from 'src/anuncios/entities/anuncio.entity';
 import { Categoria } from 'src/categorias/entities/categoria.entity';
 
 @Entity('subcategorias')
 export class Subcategoria {
-  @PrimaryGeneratedColumn({ type: 'bigint' })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: 'varchar', length: 150 })
@@ -24,5 +24,9 @@ export class Subcategoria {
     eager: true, // para que traiga las raza al hacer un findOne
   })
   categoria: Categoria;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
+
 
 }

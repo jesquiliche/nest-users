@@ -47,27 +47,37 @@ export class SubcategoriasService {
   }
 
   async update(id: number, updateSubcategoriaDto: UpdateSubcategoriaDto) {
-    const categoria_id=updateSubcategoriaDto.categoria_id;
+    const categoria_id = updateSubcategoriaDto.categoria_id;
     const categoria=await this.categoriasRepository.findOne({
       where: [
         { id: categoria_id },
       ]});
     
     if (!categoria) {
-      
       throw new BadRequestException(`Categoría con ID ${categoria_id} no encontrada`);
     }
-
-    return await this.subcategoriasRepository.save({
-      ...updateSubcategoriaDto,
-      categoria
-    });
+  
+    const subcategoria = await this.subcategoriasRepository.findOne({
+      where: [
+        { id },
+      ]});
     
-
+    if (!subcategoria) {
+      throw new NotFoundException(`Subcategoría con ID ${id} no encontrada`);
+    }
+  
+    const updatedSubcategoria = {
+      ...subcategoria,
+      ...updateSubcategoriaDto,
+      categoria,
+    };
+  
+    return await this.subcategoriasRepository.save(updatedSubcategoria);
   }
+  
 
-  remove(id: number) {
-    return `This action removes a #${id} subcategoria`;
+  async remove(id: number) {
+    return await this.subcategoriasRepository.softDelete(id);
   }
 
   async obtenerSubcategoriasDeCategoria(categoriaId: number): Promise<Subcategoria[]> {
