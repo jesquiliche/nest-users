@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column  } from 'typeorm';
+import { Entity, PrimaryColumn, Column, DeleteDateColumn  } from 'typeorm';
 
 @Entity('provincias')
 export class Provincia {
@@ -8,7 +8,8 @@ export class Provincia {
   @Column({ length: 255 })
   nombre: string;
 
- 
+  @DeleteDateColumn()
+  deletedAt: Date; 
 
     // Otras propiedades...
 }

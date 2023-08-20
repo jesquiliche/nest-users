@@ -1,11 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException } from '@nestjs/common';
 import { SubcategoriasService } from './subcategorias.service';
+
 import { CreateSubcategoriaDto } from './dto/create-subcategoria.dto';
 import { UpdateSubcategoriaDto } from './dto/update-subcategoria.dto';
 
 @Controller('subcategorias')
 export class SubcategoriasController {
   constructor(private readonly subcategoriasService: SubcategoriasService) {}
+  
 
   @Post()
   create(@Body() createSubcategoriaDto: CreateSubcategoriaDto) {
@@ -21,6 +23,7 @@ export class SubcategoriasController {
   findOne(@Param('id') id: string) {
     return this.subcategoriasService.findOne(+id);
   }
+
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateSubcategoriaDto: UpdateSubcategoriaDto) {

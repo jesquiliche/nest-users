@@ -1,4 +1,4 @@
-@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhcmNpYUBnbWFpbC5jb20iLCJpZCI6MTEsImlhdCI6MTY5MTU5MDk2MiwiZXhwIjoxNjkxNjc3MzYyfQ.tu1-hImxoq6tkNL6ebGtPMNGscbpmDqczgOUXW4pLIA
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhcmNpYUBnbWFpbC5jb20iLCJpZCI6MTEsImlhdCI6MTY5MjQ3ODEzMCwiZXhwIjoxNjkyNTY0NTMwfQ.3VQEqm6AdcKeeXgUvh0P9OKeWD2X1uSqZLhpucSHxKM
 #### Obtener todos los usuarios
 GET http://localhost:3000/api/v1/users
 Authorization: Bearer {{accessToken}}
@@ -70,10 +70,18 @@ Authorization: Bearer {{accessToken}}
 ### listado de categorías
 GET http://localhost:3000/api/v1/categorias
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 ### Vista de una categoría por su id
 GET http://localhost:3000/api/v1/categorias/1
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Vista de una categoría por su id
+GET http://localhost:3000/api/v1/categorias/1/subcategorias
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
 
 
 ### listado de categorías
@@ -94,6 +102,23 @@ Authorization: Bearer {{accessToken}}
 
 {
     "nombre":"Televisores PLASMA",
+    "descripcion":"Descripción de Televisores "
+}
+
+
+### listado de subcategorías
+GET http://localhost:3000/api/v1/subcategorias
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Crear Subcategoria
+POST http://localhost:3000/api/v1/subcategorias
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nombre":"Subcategoria de pruebas",
     "descripcion":"Descripción de Televisores ",
-    "imagen":"Imagen"
+    "imagen":"Imagen",
+    "categoria_id":1
 }

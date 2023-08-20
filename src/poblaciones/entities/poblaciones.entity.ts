@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryColumn, Column, OneToMany, DeleteDateColumn } from 'typeorm';
 import { Anuncio } from 'src/anuncios/entities/anuncio.entity';
 
 
@@ -13,5 +13,10 @@ export class Poblacion {
   @Column({ type: 'varchar', length: 255 })
   nombre: string;
 
+  @Column({ type: 'varchar', length: 2 })
+  cod_provincia: string;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
 }

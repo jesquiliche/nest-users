@@ -13,6 +13,9 @@ export class Subcategoria {
   @Column({ type: 'text' })
   descripcion: string;
 
+  @Column({ type: 'text' })
+  imagen?: string;
+
   @OneToMany(() => Anuncio, anuncio => anuncio.subcategoria)
   anuncios: Anuncio[];
 
