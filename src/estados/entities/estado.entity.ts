@@ -3,7 +3,7 @@ import { Anuncio } from 'src/anuncios/entities/anuncio.entity';
 
 @Entity('estados')
 export class Estado {
-  @PrimaryGeneratedColumn({ type: 'bigint' })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: 'varchar', length: 255 })

@@ -143,3 +143,33 @@ Authorization: Bearer {{accessToken}}
 DELETE  http://localhost:3000/api/v1/subcategorias/2
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
+
+
+### Listar estados
+GET   http://localhost:3000/api/v1/estados
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Crear estados
+POST   http://localhost:3000/api/v1/estados
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "titulo":"Necesita reparación"
+}
+
+
+### Modificar estados
+PATCH    http://localhost:3000/api/v1/estados/1
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "titulo":"Necesita reparación 2"
+}
+
+### Borrar estados
+DELETE    http://localhost:3000/api/v1/estados/6
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
