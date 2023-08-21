@@ -1,4 +1,5 @@
-import { Entity, PrimaryColumn, Column, DeleteDateColumn  } from 'typeorm';
+import { Poblacion } from 'src/poblaciones/entities/poblaciones.entity';
+import { Entity, PrimaryColumn, Column, DeleteDateColumn, OneToMany  } from 'typeorm';
 
 @Entity('provincias')
 export class Provincia {
@@ -10,6 +11,9 @@ export class Provincia {
 
   @DeleteDateColumn()
   deletedAt: Date; 
+
+  @OneToMany(() => Poblacion, poblacion => poblacion.provincia)
+  poblaciones: Poblacion[];
 
     // Otras propiedades...
 }

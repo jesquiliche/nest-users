@@ -173,3 +173,24 @@ Authorization: Bearer {{accessToken}}
 DELETE    http://localhost:3000/api/v1/estados/6
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
+
+### Listar provincias
+GET    http://localhost:3000/api/v1/provincias
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Listar provincias
+GET    http://localhost:3000/api/v1/poblaciones
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Post poblaciones
+POST    http://localhost:3000/api/v1/poblaciones
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "codigo":"08921",
+    "nombre":"Santa Coloma de Gramenet",
+    "cod_provincia":"02"
+}

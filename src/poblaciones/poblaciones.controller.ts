@@ -17,18 +17,18 @@ export class PoblacionesController {
     return this.poblacionesService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.poblacionesService.findOne(+id);
+  @Get(':codigo')
+  findOne(@Param('codigo') codigo: string) {
+    return this.poblacionesService.findOne(codigo);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePoblacioneDto: UpdatePoblacioneDto) {
-    return this.poblacionesService.update(+id, updatePoblacioneDto);
+  @Patch(':codigo')
+  update(@Param('codigo') codigo: string, @Body() updatePoblacioneDto: UpdatePoblacioneDto) {
+    return this.poblacionesService.update(codigo, updatePoblacioneDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.poblacionesService.remove(+id);
+  remove(@Param('codigo') codigo: string) {
+    return this.poblacionesService.remove(codigo);
   }
 }

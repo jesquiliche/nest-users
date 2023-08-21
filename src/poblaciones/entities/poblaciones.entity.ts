@@ -1,5 +1,6 @@
-import { Entity, PrimaryColumn, Column, OneToMany, DeleteDateColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, OneToMany, DeleteDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Anuncio } from 'src/anuncios/entities/anuncio.entity';
+import { Provincia } from 'src/provincias/entities/provincia.entity';
 
 
 @Entity('poblaciones')
@@ -15,6 +16,11 @@ export class Poblacion {
 
   @Column({ type: 'varchar', length: 2 })
   cod_provincia: string;
+
+  @ManyToOne(() => Provincia, provincia => provincia.poblaciones)
+  @JoinColumn({ name: 'cod_provincia', referencedColumnName: 'codigo' })
+  provincia: Provincia;
+
 
   @DeleteDateColumn()
   deletedAt: Date;
