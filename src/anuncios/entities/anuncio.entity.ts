@@ -1,9 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,JoinColumn, OneToMany } from 'typeorm';
 import { Categoria } from 'src/categorias/entities/categoria.entity'
 import { Subcategoria } from 'src/subcategorias/entities/subcategoria.entity';
 import { Estado } from 'src/estados/entities/estado.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Poblacion } from 'src/poblaciones/entities/poblaciones.entity';
+import { Foto } from 'src/fotos/entities/foto.entity';
 
 @Entity('anuncios')
 export class Anuncio {
@@ -57,6 +58,9 @@ export class Anuncio {
   @ManyToOne(() => Poblacion, poblacion => poblacion.anuncios)
   @JoinColumn({ name: 'cod_postal', referencedColumnName: 'codigo' })
   poblacion: Poblacion;
+
+  @OneToMany(() => Foto, foto => foto.anuncio)
+  foto: Foto[];
   
 }
 

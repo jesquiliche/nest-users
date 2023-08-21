@@ -8,6 +8,7 @@ import { EstadosModule } from './estados/estados.module';
 import { PoblacionesModule } from './poblaciones/poblaciones.module';
 import { AnunciosModule } from './anuncios/anuncios.module';
 import { ProvinciasModule } from './provincias/provincias.module';
+import { FotosModule } from './fotos/fotos.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { ProvinciasModule } from './provincias/provincias.module';
     PoblacionesModule,
     AnunciosModule,
     ProvinciasModule,
+    FotosModule,
   ],
   controllers: [],
   providers: [],
