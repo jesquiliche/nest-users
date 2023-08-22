@@ -3,7 +3,9 @@ import { SubcategoriasService } from './subcategorias.service';
 
 import { CreateSubcategoriaDto } from './dto/create-subcategoria.dto';
 import { UpdateSubcategoriaDto } from './dto/update-subcategoria.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('subcategorias')
 @Controller('subcategorias')
 export class SubcategoriasController {
   constructor(private readonly subcategoriasService: SubcategoriasService) {}
@@ -22,6 +24,11 @@ export class SubcategoriasController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.subcategoriasService.findOne(+id);
+  }
+
+  @Get(':id/subcategporias')
+  obtenenerSubacategorias(@Param('id') id:number) {
+    return this.subcategoriasService.obtenerSubcategoriasDeCategoria(+id);
   }
 
 

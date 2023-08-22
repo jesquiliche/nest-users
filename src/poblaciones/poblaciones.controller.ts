@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PoblacionesService } from './poblaciones.service';
 import { CreatePoblacioneDto } from './dto/create-poblacione.dto';
 import { UpdatePoblacioneDto } from './dto/update-poblacione.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('poblaciones')
 @Controller('poblaciones')
 export class PoblacionesController {
   constructor(private readonly poblacionesService: PoblacionesService) {}

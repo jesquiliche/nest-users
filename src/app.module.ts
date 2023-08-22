@@ -12,7 +12,7 @@ import { FotosModule } from './fotos/fotos.module';
 
 @Module({
   imports: [
-    UsersModule,
+    
     TypeOrmModule.forRoot({
       type: "mysql",
       host: "localhost",
@@ -23,6 +23,7 @@ import { FotosModule } from './fotos/fotos.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    UsersModule,
     AuthModule,
     CategoriasModule,
     SubcategoriasModule,
