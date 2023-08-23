@@ -28,9 +28,9 @@ export class CategoriasController {
   }
 
   @Get(':id/subcategorias')
-  async obtenerSubcategoriasDeCategoria(@Param('id') categoriaId: number) {
+  async obtenerSubcategoriasDeCategoria(@Param('id') categoriaId: string) {
     try {
-      const subcategorias = await this.categoriasService.obtenerSubcategoriasDeCategoria(categoriaId);
+      const subcategorias = await this.categoriasService.obtenerSubcategoriasDeCategoria(+categoriaId);
       return subcategorias;
     } catch (error) {
       if (error instanceof NotFoundException) {
@@ -49,5 +49,12 @@ export class CategoriasController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.categoriasService.remove(+id);
+  }
+
+  
+  @Post('poblar') // Ruta personalizada para poblar las poblaciones
+  async poblar() {
+    await this.categoriasService.poblar(); // Llama al método en el servicio para poblar las poblaciones
+    return { message: 'Categorías pobladas exitosamente.' };
   }
 }

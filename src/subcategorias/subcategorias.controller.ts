@@ -42,4 +42,10 @@ export class SubcategoriasController {
   remove(@Param('id') id: string) {
     return this.subcategoriasService.remove(+id);
   }
+
+  @Post('poblar') // Ruta personalizada para poblar las poblaciones
+  async poblar() {
+    await this.subcategoriasService.poblar(); // Llama al método en el servicio para poblar las poblaciones
+    return { message: 'Subcategorías pobladas exitosamente.' };
+  }
 }

@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, DeleteDateColumn } from 'typeorm';
 import { Anuncio } from 'src/anuncios/entities/anuncio.entity';
 import { Categoria } from 'src/categorias/entities/categoria.entity';
+import { targetModulesByContainer } from '@nestjs/core/router/router-module';
 
 @Entity('subcategorias')
 export class Subcategoria {
@@ -10,10 +11,10 @@ export class Subcategoria {
   @Column({ type: 'varchar', length: 150 })
   nombre: string;
 
-  @Column({ type: 'text' })
-  descripcion: string;
+  @Column({ type: 'text', nullable:true })
+  descripcion?: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', nullable:true })
   imagen?: string;
 
   @OneToMany(() => Anuncio, anuncio => anuncio.subcategoria)

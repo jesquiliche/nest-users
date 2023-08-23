@@ -5,6 +5,7 @@ import { Categoria } from './entities/categoria.entity';
 import { Subcategoria } from 'src/subcategorias/entities/subcategoria.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { categoriasData } from 'src/data/categorias'
 
 @Injectable()
 export class CategoriasService {
@@ -52,5 +53,12 @@ export class CategoriasService {
 
   async remove(id: number) {
     return await this.categoriasRepository.softDelete(id);
+  }
+
+  async poblar(): Promise<any> {
+    for (const data of categoriasData) {
+      await this.categoriasRepository.save(this.categoriasRepository.create(data));
+    }
+    return 'Categorías insertadas correctamente';
   }
 }

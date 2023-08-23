@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Categoria } from 'src/categorias/entities/categoria.entity';
 import { Repository } from 'typeorm';
 import { Subcategoria } from './entities/subcategoria.entity';
+import { subcategoriasData } from 'src/data/subcategorias';
 
 
 @Injectable()
@@ -91,5 +92,12 @@ export class SubcategoriasService {
     }
 
     return subcategorias;
+  }
+
+  async poblar(): Promise<any> {
+    for (const data of subcategoriasData) {
+      await this.subcategoriasRepository.save(this.subcategoriasRepository.create(data));
+    }
+    return 'Subcategorías insertadas correctamente';
   }
 }

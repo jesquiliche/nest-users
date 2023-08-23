@@ -4,6 +4,7 @@ import { UpdatePoblacioneDto } from './dto/update-poblacione.dto';
 import { Poblacion } from './entities/poblaciones.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { poblacionesData } from 'src/data/poblaciones';
 
 @Injectable()
 export class PoblacionesService {
@@ -54,5 +55,12 @@ export class PoblacionesService {
       throw new NotFoundException(`Población con ID ${codigo} no encontrada`);
     }
     await this.poblacionesRepository.remove(poblacion);
+  }
+
+  async poblar(): Promise<any> {
+    for (const data of poblacionesData) {
+      await this.poblacionesRepository.save(this.poblacionesRepository.create(data));
+    }
+    return 'Poblaciones insertadas correctamente';
   }
 }

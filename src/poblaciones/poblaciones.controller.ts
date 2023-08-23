@@ -33,4 +33,11 @@ export class PoblacionesController {
   remove(@Param('codigo') codigo: string) {
     return this.poblacionesService.remove(codigo);
   }
+
+  @Post('poblar') // Ruta personalizada para poblar las poblaciones
+  async poblarPoblaciones() {
+    await this.poblacionesService.poblar(); // Llama al método en el servicio para poblar las poblaciones
+    return { message: 'Poblaciones pobladas exitosamente.' };
+  }
+
 }
