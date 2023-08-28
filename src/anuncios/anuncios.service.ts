@@ -125,8 +125,8 @@ export class AnunciosService {
       const result = await queryBuilder.getMany();
 
       return {
-          totalPages: totalPages,
-          data: result, // Agregar el número total de páginas al objeto de respuesta
+          totalPages: totalPages, // Agregar el número total de páginas al objeto de respuesta
+          data: result, 
       };
     }
        
@@ -134,15 +134,15 @@ export class AnunciosService {
   }
 
   
-  findOne(id: number) {
-    return `This action returns a #${id} anuncio`;
+  async findOne(id: number) {
+    return await this.anunciosRepository.findOneBy({id});
   }
 
   update(id: number, updateAnuncioDto: UpdateAnuncioDto) {
     return `This action updates a #${id} anuncio`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} anuncio`;
+  async remove(id: number) {
+    return await this.anunciosRepository.softDelete(id);
   }
 }
