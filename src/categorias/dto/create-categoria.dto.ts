@@ -17,8 +17,8 @@ export class CreateCategoriaDto {
     descripcion: string;
   
     @IsNotEmpty()
-    @Transform(({ value }) => value.trim())
     @IsString()
+    @Transform(({ value }) => value.trim())
     @MinLength(3)
     @MaxLength(255)
     imagen: string;

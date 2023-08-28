@@ -1,274 +1,262 @@
 export const subcategoriasData=[
     {
-        "categoria_id": 1,
-        "nombre": "GPS y electrónica"
+        "nombre": "GPS y electrónica",
+        "categoria":"Motor y accesorios"
     },
     {
-        "categoria_id": 1,
-        "nombre": "Herramientas"
+        "nombre": "Herramientas",
+        "categoria": "Motor y accesorios"
     },
     {
-        "categoria_id": 1,
-        "nombre": "Recambios"
+        "nombre": "Recambios",
+        "categoria": "Motor y accesorios"
     },
     {
-        "categoria_id": 1,
-        "nombre": "Otros"
+        "nombre": "Otros",
+        "categoria": "Motor y accesorios"
     },
     {
-        "categoria_id": 2,
-        "nombre": "Abrigos y chaquetas"
+        "nombre": "Abrigos y chaquetas",
+        "categoria": "Motor y accesorios"
     },
     {
-        "categoria_id": 2,
-        "nombre": "Accesorios"
+        "nombre": "Accesorios",
+        "categoria": "Motor y accesorios"
     },
     {
-        "categoria_id": 2,
-        "nombre": "Bañadores y biquinis"
+        "nombre": "Piso",
+        "categoria":"Alquiler"
     },
     {
-        "categoria_id": 2,
-        "nombre": "Belleza y cosmetica"
+        "nombre": "Casa",
+        "categoria":"Alquiler"
     },
     {
-        "categoria_id": 3,
-        "nombre": "Piso"
+        "nombre": "Habitación",
+        "categoria":"Alquiler"
     },
     {
-        "categoria_id": 3,
-        "nombre": "Casa"
+        "nombre": "Local/Oficina",
+        "categoria":"Alquiler"
     },
     {
-        "categoria_id": 3,
-        "nombre": "Habitación"
+        "nombre": "Garage",
+        "categoria":"Alquiler"
     },
     {
-        "categoria_id": 3,
-        "nombre": "Local/Oficina"
+        "nombre": "Trastero",
+        "categoria":"Alquiler"
     },
     {
-        "categoria_id": 3,
-        "nombre": "Garage"
+        "nombre": "Pilas y cargadores",
+        "categoria": "TV, audio y foto"
     },
     {
-        "categoria_id": 3,
-        "nombre": "Trastero"
+        "nombre": "Cámaras y fotografía",
+        "categoria": "TV, audio y foto"
     },
     {
-        "categoria_id": 4,
-        "nombre": "Pilas y cargadores"
+        "nombre": "Auriculares y cascos",
+        "categoria": "TV, audio y foto"
     },
     {
-        "categoria_id": 4,
-        "nombre": "Cámaras y fotografía"
+        "nombre": "Reproductores",
+        "categoria": "TV, audio y foto"
     },
     {
-        "categoria_id": 4,
-        "nombre": "Drones"
+        "nombre": "Proyectores y accesorios",
+        "categoria": "TV, audio y foto"
     },
     {
-        "categoria_id": 4,
-        "nombre": "Auriculares y cascos"
+        "nombre": "Accesorios",
+        "categoria": "Móviles y telefonía"
     },
     {
-        "categoria_id": 4,
-        "nombre": "Reproductores"
+        "nombre": "Cables",
+        "categoria": "Móviles y telefonía"
     },
     {
-        "categoria_id": 4,
-        "nombre": "Proyectores y accesorios"
+        "nombre": "Piezas y recambios",
+        "categoria": "Móviles y telefonía"
     },
     {
-        "categoria_id": 5,
-        "nombre": "Accesorios"
+        "nombre": "Tablets",
+        "categoria": "Móviles y telefonía"
     },
     {
-        "categoria_id": 5,
-        "nombre": "Cables"
+        "nombre": "Teléfonos antiguos",
+        "categoria": "Móviles y telefonía"
     },
     {
-        "categoria_id": 5,
-        "nombre": "Piezas y recambios"
+        "nombre": "Teléfonos móviles",
+        "categoria": "Móviles y telefonía"
     },
     {
-        "categoria_id": 5,
-        "nombre": "Tablets"
-    },
-    {
-        "categoria_id": 5,
-        "nombre": "Teléfonos antiguos"
-    },
-    {
-        "categoria_id": 5,
-        "nombre": "Teléfonos móviles"
-    },
-    {
-        "categoria_id": 5,
-        "nombre": "Otros"
-    },
+        "nombre": "Otros",
+        "categoria": "Móviles y telefonía"    },
     {
-        "categoria_id": 6,
-        "nombre": "Cargadores y baterías"
+    
+        "nombre": "Cargadores y baterías",
+        "categoria": "Móviles y telefonía"
     },
     {
-        "categoria_id": 6,
-        "nombre": "Cables"
+        "nombre": "Cables",
+        "categoria": "Móviles y telefonía"
     },
     {
-        "categoria_id": 6,
-        "nombre": "Ordenadores y accesorios"
+        "nombre": "Ordenadores y accesorios",
+        "categoria":"Informática y electronica"
     },
     {
-        "categoria_id": 6,
-        "nombre": "Monitores"
+        "nombre": "Monitores",
+        "categoria":"Informática y electronica"
     },
     {
-        "categoria_id": 6,
-        "nombre": "Realidad virtual y aumentada"
+        "nombre": "Realidad virtual y aumentada",
+        "categoria":"Informática y electronica"
     },
     {
-        "categoria_id": 6,
-        "nombre": "Software"
+        "nombre": "Software",
+        "categoria":"Informática y electronica"
     },
     {
-        "categoria_id": 6,
-        "nombre": "Impresoras y accesorios"
+        "nombre": "Impresoras y accesorios",
+        "categoria":"Informática y electronica"
     },
     {
-        "categoria_id": 6,
-        "nombre": "Otros"
+        "nombre": "Otros",
+        "categoria":"Informática y electronica"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Baloncesto"
+        "nombre": "Baloncesto",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Balonmano"
+        "nombre": "Balonmano",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Estáticas y elípticas"
+        "nombre": "Estáticas y elípticas",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Fitness, running y yoga"
+        "nombre": "Fitness, running y yoga",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Fútbol"
+        "nombre": "Fútbol",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Golf"
+        "nombre": "Golf",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Juegos recreativos y de mesa"
+        "nombre": "Juegos recreativos y de mesa",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Manualidades"
+        "nombre": "Manualidades",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Montaña y esquí"
+        "nombre": "Montaña y esquí",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Natación y accesorios piscina"
+        "nombre": "Natación y accesorios piscina",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Otros deportes"
+        "nombre": "Otros deportes",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Patinetes y patinaje"
+        "nombre": "Patinetes y patinaje",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Rugby"
+        "nombre": "Rugby",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Tenis y pádel"
+        "nombre": "Tenis y pádel",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Vóley"
+        "nombre": "Vóley",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 7,
-        "nombre": "Otros"
+        "nombre": "Otros",
+        "categoria":"Deporte y ocio"
     },
     {
-        "categoria_id": 8,
-        "nombre": "Accesorios de consola"
+        "nombre": "Accesorios de consola",
+        "categoria": "Consolas y videojuegos",
     },
     {
-        "categoria_id": 8,
-        "nombre": "Consolas"
+        "nombre": "Consolas",
+        "categoria": "Consolas y videojuegos",
     },
     {
-        "categoria_id": 8,
-        "nombre": "Manuales y guías"
+        "nombre": "Manuales y guías",
+        "categoria": "Consolas y videojuegos",
     },
     {
-        "categoria_id": 8,
-        "nombre": "Merchandising de videojuegos"
+        "nombre": "Merchandising de videojuegos",
+        "categoria": "Consolas y videojuegos",
     },
     {
-        "categoria_id": 8,
-        "nombre": "Recambios de consolas"
+        "nombre": "Recambios de consolas",
+        "categoria": "Consolas y videojuegos"
     },
     {
-        "categoria_id": 8,
-        "nombre": "Otros"
+        "nombre": "Otros",
+        "categoria": "Consolas y videojuegos",
     },
     {
-        "categoria_id": 9,
-        "nombre": "Bicicletas ciudad"
+        "nombre": "Bicicletas ciudad",
+        "categoria": "Bicicletas",
     },
     {
-        "categoria_id": 9,
-        "nombre": "Bicicletas de carretera"
+        "nombre": "Bicicletas de carretera",
+        "categoria": "Bicicletas",
     },
     {
-        "categoria_id": 9,
-        "nombre": "Bicicletas plegables"
+        "nombre": "Bicicletas plegables",
+        "categoria": "Bicicletas"
     },
     {
-        "categoria_id": 9,
-        "nombre": "Bicicletas eléctricas"
+        "nombre": "Bicicletas eléctricas",
+        "categoria": "Bicicletas"
     },
     {
-        "categoria_id": 9,
-        "nombre": "Bicicletas Infantiles"
+        "nombre": "Bicicletas Infantiles",
+        "categoria": "Bicicletas"
     },
     {
-        "categoria_id": 9,
-        "nombre": "Bicicletas Estaticas"
+        "nombre": "Bicicletas Estaticas",
+        "categoria": "Bicicletas"
     },
     {
-        "categoria_id": 9,
-        "nombre": "Otros"
+        "nombre": "Otros",
+        "categoria": "Bicicletas"
     },
     {
-        "categoria_id": 10,
-        "nombre": "Caseta préfabricada"
+        "nombre": "Caseta préfabricada",
+        "categoria": "Bicicletas"
     },
     {
-        "categoria_id": 10,
-        "nombre": "Mueble de cocina"
+        "nombre": "Mueble de cocina",
+        "categoria": "Bicicletas"
     },
     {
-        "categoria_id": 10,
-        "nombre": "Mesa para jardin"
+        "nombre": "Mesa para jardin",
+        "categoria": "Hogar y jardín",
     },
     {
-        "categoria_id": 10,
-        "nombre": "Otro"
+        "nombre": "Otro",
+        "categoria": "Hogar y jardín",
     }
 ]

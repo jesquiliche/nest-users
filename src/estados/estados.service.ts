@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Estado } from './entities/estado.entity';
 import { CreateEstadoDto } from './dto/create-estado.dto';
 import { UpdateEstadoDto } from './dto/update-estado.dto';
+import { estadosData } from 'src/data/estados';
 
 @Injectable()
 export class EstadosService {
@@ -56,5 +57,12 @@ export class EstadosService {
 
   async remove(id: number) {
     return await this.estadosRepository.softDelete(id);
+  }
+
+  async poblar(): Promise<any> {
+    for (const data of estadosData) {
+      await this.estadosRepository.save(this.estadosRepository.create(data));
+    }
+    return 'Estadoss insertadas correctamente';
   }
 }

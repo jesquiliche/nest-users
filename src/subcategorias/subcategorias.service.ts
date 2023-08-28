@@ -21,15 +21,15 @@ export class SubcategoriasService {
 
 
  async create(createSubcategoriaDto: CreateSubcategoriaDto) {
-    const categoria_id=createSubcategoriaDto.categoria_id;
+    const categoria1=createSubcategoriaDto.categoria;
     const categoria=await this.categoriasRepository.findOne({
       where: [
-        { id: categoria_id },
+        { nombre: categoria1 },
       ]});
     
     if (!categoria) {
       
-      throw new BadRequestException(`Categoría con ID ${categoria_id} no encontrada`);
+      throw new BadRequestException(`Categoría con nombre ${categoria1} no encontrada`);
     }
 
     return await this.subcategoriasRepository.save({
@@ -48,14 +48,14 @@ export class SubcategoriasService {
   }
 
   async update(id: number, updateSubcategoriaDto: UpdateSubcategoriaDto) {
-    const categoria_id = updateSubcategoriaDto.categoria_id;
+    const categoria1 = updateSubcategoriaDto.categoria;
     const categoria=await this.categoriasRepository.findOne({
       where: [
-        { id: categoria_id },
+        { nombre: categoria1 },
       ]});
     
     if (!categoria) {
-      throw new BadRequestException(`Categoría con ID ${categoria_id} no encontrada`);
+      throw new BadRequestException(`Categoría con nombre ${categoria1} no encontrada`);
     }
   
     const subcategoria = await this.subcategoriasRepository.findOne({
@@ -96,7 +96,18 @@ export class SubcategoriasService {
 
   async poblar(): Promise<any> {
     for (const data of subcategoriasData) {
-      await this.subcategoriasRepository.save(this.subcategoriasRepository.create(data));
+      
+      const categoria=await this.categoriasRepository.findOne({
+        where: [
+          { nombre: data.categoria },
+        ]});
+      
+     
+      if (!categoria) {
+        throw new BadRequestException(`Categoría con Nombre ${data.categoria} no encontrada`);
+      }
+      let subcategoria={...data,categoria};
+      await this.subcategoriasRepository.save(this.subcategoriasRepository.create(subcategoria));
     }
     return 'Subcategorías insertadas correctamente';
   }

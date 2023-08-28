@@ -33,4 +33,12 @@ export class EstadosController {
   remove(@Param('id') id: string) {
     return this.estadosService.remove(+id);
   }
+
+  
+  @Post('poblar') // Ruta personalizada para poblar las poblaciones
+  async poblar() {
+    await this.estadosService.poblar(); // Llama al método en el servicio para poblar las poblaciones
+    return { message: 'Estados pobladas exitosamente.' };
+  }
 }
+

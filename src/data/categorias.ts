@@ -4,6 +4,10 @@ export const categoriasData=[
         "imagen": "/images/motor.jpg"
     },
     {
+        "nombre": "Ropa y complementos",
+        "imagen": "/images/motor.jpg"
+    },
+    {
         "nombre": "Alquiler",
         "imagen": "/images/piso.jpg"
     },
