@@ -9,6 +9,7 @@ import {
 } from 'class-validator';
 
 export class CreateAnuncioDto {
+
   @ApiProperty({
     example: 'Ejemplo de título',
     description: 'El título del anuncio',

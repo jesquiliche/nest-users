@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { AnunciosService } from './anuncios.service';
 import { CreateAnuncioDto } from './dto/create-anuncio.dto';
 import { UpdateAnuncioDto } from './dto/update-anuncio.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { PaginateDto } from './dto/pagination-dto';
 
 @ApiTags('anuncios')
 @Controller('anuncios')
@@ -14,9 +15,11 @@ export class AnunciosController {
     return this.anunciosService.create(createAnuncioDto);
   }
 
+  @ApiQuery({ name: 'limit', required: false, type: Number })
+  @ApiQuery({ name: 'page', required: false, type: Number })
   @Get()
-  findAll() {
-    return this.anunciosService.findAll();
+  findAll(@Query() query: PaginateDto) {
+    return this.anunciosService.findAll(query);
   }
 
   @Get(':id')

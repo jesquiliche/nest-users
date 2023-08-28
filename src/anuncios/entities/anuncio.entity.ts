@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,JoinColumn, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,JoinColumn, OneToMany, DeleteDateColumn } from 'typeorm';
 import { Subcategoria } from 'src/subcategorias/entities/subcategoria.entity';
 import { Estado } from 'src/estados/entities/estado.entity';
 import { User } from 'src/users/entities/user.entity';
@@ -55,6 +55,9 @@ export class Anuncio {
 
   @OneToMany(() => Foto, foto => foto.anuncio)
   foto: Foto[];
+
+  @DeleteDateColumn()
+  deletedAt: Date;
   
 }
 

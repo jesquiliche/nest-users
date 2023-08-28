@@ -194,3 +194,23 @@ Authorization: Bearer {{accessToken}}
     "nombre":"Santa Coloma de Gramenet",
     "cod_provincia":"02"
 }
+
+
+
+### Post anuncios
+POST    http://localhost:3000/api/v1/anuncios
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "titulo": "Ejemplo de título",
+  "description": "Ejemplo de descripción",
+  "imagen": "mi_imagen.jpg",
+  "precio": 100.5,
+  "telefono": "123456789",
+  "subcategoria": "GPS y electr",
+  "estado": "Como n",
+  "user": "prueba@gmail.com",
+  "provincia": "01",
+  "cod_postal": "01002"
+}
