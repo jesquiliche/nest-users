@@ -11,10 +11,9 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Anuncios API')
-    .setDescription('API de anuncios de artículos de Segunda Mano.\n Jesús Quintana')
-    .setVersion('1.0')
+    .setDescription('API de anuncios de artículos de segunda mano.\n Jesús Quintana')
+    .setVersion('1.5')
     .addBearerAuth()
-    .addTag('Anuncios')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
