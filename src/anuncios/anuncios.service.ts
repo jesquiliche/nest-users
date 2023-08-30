@@ -109,6 +109,7 @@ export class AnunciosService {
       // Inicializa el queryBuilder con joins para las relaciones
       let dynamicQueryBuilder = queryBuilder
         .innerJoinAndSelect('anuncios.subcategoria', 'subcategoria')
+        .innerJoinAndSelect('subcategoria.categoria', 'categoria')
         .innerJoinAndSelect('anuncios.estado', 'estado')
         .innerJoinAndSelect('anuncios.user', 'user')
         .innerJoinAndSelect('anuncios.poblacion', 'poblacion');
@@ -172,6 +173,17 @@ export class AnunciosService {
           },
         );
       }
+
+       // Aplica el filtro de categoría si se proporciona
+       if (params.categoria) {
+        dynamicQueryBuilder = dynamicQueryBuilder.andWhere(
+          'categoria.nombre LIKE :categoria',
+          {
+            categoria: `%${params.categoria}%`,
+          },
+        );
+      }
+  
   
       // Obtiene el total de anuncios para la paginación
       const totalCount = await queryBuilder.getCount();
@@ -190,7 +202,7 @@ export class AnunciosService {
   
       return {
         totalPages,
-        registers: totalCount,
+        records: totalCount,
         data: result,
       };
     }

@@ -61,5 +61,14 @@ export class PaginateDto {
     })
     @IsOptional()
     titulo?:string;
+
+    @ApiProperty({
+      required: false,
+      description: 'Filtrar por la Categoría',
+      example: 'Motor y accesorios' // Ejemplo de estado
+    })
+    @IsOptional()
+    categoria?:string;
+  
   
 }
