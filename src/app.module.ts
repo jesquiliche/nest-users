@@ -9,6 +9,9 @@ import { PoblacionesModule } from './poblaciones/poblaciones.module';
 import { AnunciosModule } from './anuncios/anuncios.module';
 import { ProvinciasModule } from './provincias/provincias.module';
 import { FotosModule } from './fotos/fotos.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+
 
 @Module({
   imports: [
@@ -22,6 +25,10 @@ import { FotosModule } from './fotos/fotos.module';
       database: "users",
       autoLoadEntities: true,
       synchronize: true,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'), // Ruta a la carpeta 'public' en la raíz del proyecto
+      serveRoot: '/static', // Ruta base para servir archivos estáticos
     }),
     UsersModule,
     AuthModule,

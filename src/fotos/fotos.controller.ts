@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete,Res } from '@nestjs/common';
 import { FotosService } from './fotos.service';
 import { CreateFotoDto } from './dto/create-foto.dto';
 import { UpdateFotoDto } from './dto/update-foto.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { Response } from 'express';
+import { join } from 'path';
 
 @ApiTags('fotos')
 @Controller('fotos')
@@ -17,6 +19,12 @@ export class FotosController {
   @Get()
   findAll() {
     return this.fotosService.findAll();
+  }
+
+  @Get(':filename')
+  async serveImage(@Param('filename') filename: string, @Res() res: Response) {
+    const imagePath = join(__dirname, '..', 'public/images', filename); // Ruta completa de la imagen
+    res.sendFile(imagePath);
   }
 
   @Get(':id')

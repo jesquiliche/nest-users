@@ -17,7 +17,7 @@ export class CategoriasController {
   }
 
   @Get()
-  @UseGuards(AuthGuard)
+//  @UseGuards(AuthGuard)
   findAll() {
     return this.categoriasService.findAll();
   }
