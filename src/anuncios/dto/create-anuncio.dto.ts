@@ -7,6 +7,9 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import { Subcategoria } from 'src/subcategorias/entities/subcategoria.entity';
+import { User } from 'src/users/entities/user.entity';
+import { Estado } from 'src/estados/entities/estado.entity';
 
 export class CreateAnuncioDto {
 

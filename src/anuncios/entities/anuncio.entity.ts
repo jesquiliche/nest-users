@@ -1,4 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,JoinColumn, OneToMany, DeleteDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
+  DeleteDateColumn,
+  CreateDateColumn,
+} from 'typeorm';
 import { Subcategoria } from 'src/subcategorias/entities/subcategoria.entity';
 import { Estado } from 'src/estados/entities/estado.entity';
 import { User } from 'src/users/entities/user.entity';
@@ -25,19 +34,19 @@ export class Anuncio {
   @Column({ length: 15 })
   telefono: string;
 
-  @ManyToOne(() => Subcategoria, subcategoria => subcategoria.anuncios,{
+  @ManyToOne(() => Subcategoria, (subcategoria) => subcategoria.anuncios, {
     // cascade: true,
     eager: true, // para que traiga las raza al hacer un findOne
   })
   subcategoria: Subcategoria;
 
-  @ManyToOne(() => Estado, estado => estado.anuncios,{
+  @ManyToOne(() => Estado, (estado) => estado.anuncios, {
     // cascade: true,
     eager: true, // para que traiga las raza al hacer un findOne
   })
   estado: Estado;
 
-  @ManyToOne(() => User, user => user.anuncios,{
+  @ManyToOne(() => User, (user) => user.anuncios, {
     // cascade: true,
     eager: true, // para que traiga las raza al hacer un findOne
   })
@@ -49,15 +58,16 @@ export class Anuncio {
   @Column({ length: 5 })
   cod_postal: string;
 
-  @ManyToOne(() => Poblacion, poblacion => poblacion.anuncios)
+  @ManyToOne(() => Poblacion, (poblacion) => poblacion.anuncios)
   @JoinColumn({ name: 'cod_postal', referencedColumnName: 'codigo' })
   poblacion: Poblacion;
 
-  @OneToMany(() => Foto, foto => foto.anuncio)
+  @OneToMany(() => Foto, (foto) => foto.anuncio)
   foto: Foto[];
 
   @DeleteDateColumn()
   deletedAt: Date;
-  
-}
 
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: Date;
+}

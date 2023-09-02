@@ -15,7 +15,7 @@ export class PaginateDto {
 
     @ApiProperty({
       required: false,
-      description: 'Filtrar por subcategoria del anuncio',
+      description: 'Filtrar por subcategoría del anuncio',
       example: 'GPS y electrónica' // Ejemplo de estado
     })
     @IsOptional()
@@ -69,6 +69,22 @@ export class PaginateDto {
     })
     @IsOptional()
     categoria?:string;
+
+    @ApiProperty({
+      required: false,
+      description: 'Filtrar desde fecha',
+      example: '2020-1-1' // Ejemplo de estado
+    })
+    @IsOptional()
+    fecha_desde?:Date;
+
+    @ApiProperty({
+      required: false,
+      description: 'Filtrar hasta fecha',
+      example: '2023-12-31' // Ejemplo de estado
+    })
+    @IsOptional()
+    fecha_hasta?:Date;
   
   
 }
