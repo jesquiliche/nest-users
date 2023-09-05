@@ -1,8 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import {
   IsNotEmpty,
   IsNumber,
+  IsNumberString,
   IsString,
   MaxLength,
   MinLength,
@@ -10,6 +11,7 @@ import {
 import { Subcategoria } from 'src/subcategorias/entities/subcategoria.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Estado } from 'src/estados/entities/estado.entity';
+import { File } from 'buffer';
 
 export class CreateAnuncioDto {
 
@@ -50,7 +52,8 @@ export class CreateAnuncioDto {
   imagen: string;
 
   @IsNotEmpty()
-  @IsNumber()
+ // @IsNumberString()
+  @Type(() => Number)
   @ApiProperty({ example: 100.5 })
   precio: number;
 
@@ -72,6 +75,8 @@ export class CreateAnuncioDto {
   @MaxLength(255)
   @ApiProperty({})
   subcategoria: string;
+
+  
 
   @IsNotEmpty()
   @ApiProperty({
