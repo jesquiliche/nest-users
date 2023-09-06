@@ -28,7 +28,7 @@ import { Anuncio } from "src/anuncios/entities/anuncio.entity";
     
     password:string;
 
-    @Column({unique:true,nullable:false,type:'varchar',length:50})
+    @Column({unique:false,nullable:false,type:'varchar',length:100})
     email:string;
 
     @Column({ default: 'user',length:15,type:'varchar' })

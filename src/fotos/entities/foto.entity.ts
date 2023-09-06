@@ -6,12 +6,12 @@ export class Foto {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ type: 'varchar', length: 255 })
-    path: string;
+    @Column({ type: 'varchar', length: 255, nullable:true })
+    path?: string;
 
     @ManyToOne(() =>Anuncio, anuncio => anuncio.foto,{
         // cascade: true,
-        eager: true, // para que traiga las raza al hacer un findOne
+        eager: true, 
       })
     anuncio: Anuncio;
 }

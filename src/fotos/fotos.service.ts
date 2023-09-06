@@ -1,29 +1,46 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateFotoDto } from './dto/create-foto.dto';
 import { UpdateFotoDto } from './dto/update-foto.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Foto } from './entities/foto.entity';
+import { Anuncio } from 'src/anuncios/entities/anuncio.entity';
 
 @Injectable()
 export class FotosService {
 
   constructor(
     @InjectRepository(Foto)
-    private fotossRepository: Repository<Foto>,
+    private fotosRepository: Repository<Foto>,
+
+    @InjectRepository(Anuncio)
+    private anunciosRepository: Repository<Anuncio>,
 
   ) {}
 
-  create(createFotoDto: CreateFotoDto) {
-    return 'This action adds a new foto';
+  async create(createFotoDto: CreateFotoDto) {
+    const {anuncio_id}=createFotoDto;
+    const anuncio= await this.anunciosRepository.findOneBy({id:anuncio_id});
+
+    console.log(anuncio);
+
+    if(!anuncio){
+      throw new BadRequestException(`Anuncio con id ${anuncio_id} no encontrada`);
+    }
+
+    const nuevaFoto={
+      ...createFotoDto,
+      anuncio
+    }
+    return await this.fotosRepository.save(this.fotosRepository.create(nuevaFoto));
   }
 
-  findAll() {
-    return `This action returns all fotos`;
+  async findAll() {
+    return await this.fotosRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} foto`;
+  async findOne(id: number) {
+    return await this.fotosRepository.findOneBy({id});
   }
 
   update(id: number, updateFotoDto: UpdateFotoDto) {

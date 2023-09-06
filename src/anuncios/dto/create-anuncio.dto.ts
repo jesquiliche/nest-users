@@ -52,7 +52,7 @@ export class CreateAnuncioDto {
   imagen: string;
 
   @IsNotEmpty()
- // @IsNumberString()
+  @IsNumber()
   @Type(() => Number)
   @ApiProperty({ example: 100.5 })
   precio: number;

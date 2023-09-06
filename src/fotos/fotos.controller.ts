@@ -13,6 +13,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 
 
 
+
 @ApiTags('fotos')
 @Controller('fotos')
 export class FotosController {
@@ -44,9 +45,12 @@ export class FotosController {
       },
     }),
   )
-  uploadFile(@UploadedFile() file) {
+  async uploadFile(@Body() createFotoDto:CreateFotoDto, @UploadedFile() file) {
     // Continúa con el procesamiento si el archivo es una imagen válida
-    console.log(file);
+    
+    createFotoDto.path=file.filename;
+    console.log(createFotoDto);
+    return await this.fotosService.create(createFotoDto);
   }
  
 
@@ -56,15 +60,18 @@ export class FotosController {
     return this.fotosService.findAll();
   }
 
-  @Get(':filename')
+  @Get('image/:filename')
   async serveImage(@Param('filename') filename: string, @Res() res: Response) {
     const imagePath = join(__dirname, '..', 'public/images', filename); // Ruta completa de la imagen
     res.sendFile(imagePath);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.fotosService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const foto=await this.fotosService.findOne(+id);
+    if(!foto){
+      throw new BadRequestException(`Foto con id ${id} no encontrada`);
+    }
   }
 
   @Patch(':id')

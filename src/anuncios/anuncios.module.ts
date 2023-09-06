@@ -17,6 +17,7 @@ import { UsersModule } from 'src/users/users.module';
     PoblacionesModule,
     UsersModule],
   controllers: [AnunciosController],
-  providers: [AnunciosService]
+  providers: [AnunciosService],
+  exports : [AnunciosService,TypeOrmModule]
 })
 export class AnunciosModule {}
