@@ -27,8 +27,8 @@ import { join } from 'path';
       synchronize: true,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'), // Ruta a la carpeta 'public' en la raíz del proyecto
-      serveRoot: '/static', // Ruta base para servir archivos estáticos
+      rootPath: join(__dirname, '..', 'src/public/images'), // Ruta a la carpeta 'public' en la raíz del proyecto
+      serveRoot: '/images', // Ruta base para servir archivos estáticos
     }),
     UsersModule,
     AuthModule,
