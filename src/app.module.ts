@@ -11,18 +11,21 @@ import { ProvinciasModule } from './provincias/provincias.module';
 import { FotosModule } from './fotos/fotos.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ConfigModule } from "@nestjs/config";
 
 
 @Module({
   imports: [
-    
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: "mysql",
-      host: "localhost",
-      port: 3307,
-      username: "root",
-      password: "3912481",
-      database: "users",
+      host: process.env.HOST_NAME,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.USER_NAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
       autoLoadEntities: true,
       synchronize: true,
     }),
