@@ -1,25 +1,27 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete,Res, UploadedFile, ParseFilePipe, UseInterceptors,HttpStatus, BadRequestException } from '@nestjs/common';
+import { Controller, UseGuards, Get, Post, Body, Patch, Param, Delete,Res, UploadedFile, ParseFilePipe, UseInterceptors,HttpStatus, BadRequestException } from '@nestjs/common';
 import { FotosService } from './fotos.service';
 import { CreateFotoDto } from './dto/create-foto.dto';
-import { UpdateFotoDto } from './dto/update-foto.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { Response } from 'express';
-
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { diskStorage } from 'multer';
 import * as path from 'path'
-import { join } from 'path';
 import { FileInterceptor } from '@nestjs/platform-express';
-
-
-
-
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @ApiTags('fotos')
+@ApiBearerAuth()
 @Controller('fotos')
 export class FotosController {
   constructor(private readonly fotosService: FotosService) {}
 
   @Post('upload')
+  @UseGuards(AuthGuard)
+  @ApiOperation({
+    summary: 'Sube una foto asociada a anuncio al servidor',
+    description: 'Sube una foto asociada a anuncio al servidor',
+  })
+  @ApiResponse({ status: 201, description: 'Operación exitosa', type: String })
+  @ApiResponse({ status: 400, description: 'Solicitud incorrecta' })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -49,24 +51,31 @@ export class FotosController {
     // Continúa con el procesamiento si el archivo es una imagen válida
     
     createFotoDto.path=file.filename;
-    console.log(createFotoDto);
     return await this.fotosService.create(createFotoDto);
   }
  
 
 
   @Get()
-  findAll() {
-    return this.fotosService.findAll();
-  }
-
-  @Get('image/:filename')
-  async serveImage(@Param('filename') filename: string, @Res() res: Response) {
-    const imagePath = join(__dirname, '..', 'public/images', filename); // Ruta completa de la imagen
-    res.sendFile(imagePath);
+  @UseGuards(AuthGuard)
+  @ApiOperation({
+    summary: 'Devuelve todas las fotos',
+    description: 'Devuelve todas las fotos',
+  })
+  @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
+  async findAll() {
+    return await this.fotosService.findAll();
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard)
+  @ApiOperation({
+    summary: 'Obtiene una foto por su #Id',
+    description: 'Obtiene una foto por su #Id',
+  })
+  @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
   async findOne(@Param('id') id: string) {
     const foto=await this.fotosService.findOne(+id);
     if(!foto){
@@ -74,11 +83,14 @@ export class FotosController {
     }
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFotoDto: UpdateFotoDto) {
-    return this.fotosService.update(+id, updateFotoDto);
-  }
 
+  @UseGuards(AuthGuard)
+  @ApiOperation({
+    summary: 'Borra una foto identificada por su #Id',
+    description: 'Borra una foto identificada por su #Id',
+  })
+  @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.fotosService.remove(+id);

@@ -19,6 +19,7 @@ export class CategoriasController {
   })
   @ApiResponse({ status: 201, description: 'Operación exitosa', type: String })
   @ApiResponse({ status: 400, description: 'Solicitud incorrecta' })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
   create(@Body() createCategoriaDto: CreateCategoriaDto) {
     return this.categoriasService.create(createCategoriaDto);
   }
@@ -47,6 +48,7 @@ export class CategoriasController {
   }
 
   @Get(':id/subcategorias')
+  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Obtiene todas los subcategorías de una categoría especifica.',
     description: 'Obtiene todas los subcategorías de una categoría especifica.',
@@ -67,6 +69,7 @@ export class CategoriasController {
     }
   }
   @Patch(':id')
+  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Actualiza la categoría con el Id especificado',
     description: 'Actualiza la categoría con el Id especificado',
@@ -79,6 +82,7 @@ export class CategoriasController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Actualiza la categoría con el Id especificado',
     description: 'Actualiza la categoría con el Id especificado',
@@ -91,6 +95,7 @@ export class CategoriasController {
 
   
   @Post('poblar') // Ruta personalizada para poblar las poblaciones
+  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Llama a una rutina que rellena la tabla de Categorías',
     description: 'Llama a una rutina que rellena la tabla de Categorías',
