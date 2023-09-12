@@ -34,6 +34,15 @@ export class PoblacionesService {
     return poblacion;
   }
 
+  async findProv(cod_provincia: string) {
+    const poblaciones = await this.poblacionesRepository.find({
+      where: [
+        { cod_provincia },
+      ]});
+    return poblaciones;
+  }
+
+
   async update(codigo: string, updatePoblacioneDto: UpdatePoblacioneDto): Promise<Poblacion> {
     const poblacion = await this.poblacionesRepository.preload({
       codigo,

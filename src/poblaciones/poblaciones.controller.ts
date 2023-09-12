@@ -48,6 +48,18 @@ export class PoblacionesController {
     return this.poblacionesService.findOne(codigo);
   }
 
+  @Get('/provincia/:cod_provincia')
+  @UseGuards(AuthGuard)
+  @ApiOperation({
+    summary: 'Devuelve todas las poblaciones con el código de provincia correspondiente.',
+    description: 'Devuelve todas las poblaciones con el código de provincia correspondiente.',
+  })
+  @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
+  async findProv(@Param('cod_provincia') cod_provincia: string) {
+    return await this.poblacionesService.findProv(cod_provincia);
+  }
+
   @Patch(':codigo')
   @UseGuards(AuthGuard)
   @ApiOperation({
