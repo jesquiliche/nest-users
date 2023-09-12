@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProvinciaDto } from './dto/create-provincia.dto';
-import { UpdateProvinciaDto } from './dto/update-provincia.dto';
 import { Provincia } from './entities/provincia.entity';
+import { provincias } from 'src/data/provincias';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -13,23 +12,14 @@ export class ProvinciasService {
       private provinciasRepository: Repository<Provincia>,
     ) {}
 
-  create(createProvinciaDto: CreateProvinciaDto) {
-    return 'This action adds a new provincia';
-  }
-
   async findAll() {
     return await this.provinciasRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} provincia`;
-  }
-
-  update(id: number, updateProvinciaDto: UpdateProvinciaDto) {
-    return `This action updates a #${id} provincia`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} provincia`;
+  async poblar(): Promise<any> {
+    for (const data of provincias) {
+      await this.provinciasRepository.save(this.provinciasRepository.create(data));
+    }
+    return 'Provincias insertadas correctamente';
   }
 }

@@ -20,8 +20,8 @@ export class PoblacionesController {
   @ApiResponse({ status: 201, description: 'Operación exitosa', type: String })
   @ApiResponse({ status: 400, description: 'Solicitud incorrecta' })
   @ApiResponse({ status: 401, description: 'No autorizado' })
-  create(@Body() createPoblacioneDto: CreatePoblacioneDto) {
-    return this.poblacionesService.create(createPoblacioneDto);
+  async create(@Body() createPoblacioneDto: CreatePoblacioneDto) {
+    return await this.poblacionesService.create(createPoblacioneDto);
   }
 
   @Get()
