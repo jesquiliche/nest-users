@@ -22,8 +22,6 @@ export class FotosService {
     const {anuncio_id}=createFotoDto;
     const anuncio= await this.anunciosRepository.findOneBy({id:anuncio_id});
 
-    console.log(anuncio);
-
     if(!anuncio){
       throw new BadRequestException(`Anuncio con id ${anuncio_id} no encontrada`);
     }

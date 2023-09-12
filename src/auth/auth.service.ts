@@ -28,8 +28,6 @@ import {
         if (!user) {
           throw new UnauthorizedException('Email invalido');
         }
-        console.log(user)
-        console.log(email,password)
         const isPasswordValid = await bcryptjs.compare(password, user.password);
         if (!isPasswordValid) {
           throw new UnauthorizedException('Credenciales no validas');
