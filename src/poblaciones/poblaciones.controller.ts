@@ -49,7 +49,6 @@ export class PoblacionesController {
   }
 
   @Get('/provincia/:cod_provincia')
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Devuelve todas las poblaciones con el código de provincia correspondiente.',
     description: 'Devuelve todas las poblaciones con el código de provincia correspondiente.',
