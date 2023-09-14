@@ -27,7 +27,6 @@ export class SubcategoriasController {
   }
 
   @Get()
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Obtiene todas las subcategorías.',
     description: 'Obtiene todas las subcategorías .',
@@ -39,7 +38,6 @@ export class SubcategoriasController {
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Obtiene una subcategoría por su #Id',
     description: 'Obtiene  una subcategoría por su #Id.',
@@ -51,7 +49,6 @@ export class SubcategoriasController {
   }
 
   @Get('/categoria/:id')
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Obtiene todas las subcategorías asociadas una categoría',
     description: 'Obtiene todas las subcategorías asociadas una categoría por su #Id',
