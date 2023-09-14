@@ -20,8 +20,8 @@ export class CategoriasController {
   @ApiResponse({ status: 201, description: 'Operación exitosa', type: String })
   @ApiResponse({ status: 400, description: 'Solicitud incorrecta' })
   @ApiResponse({ status: 401, description: 'No autorizado' })
-  create(@Body() createCategoriaDto: CreateCategoriaDto) {
-    return this.categoriasService.create(createCategoriaDto);
+  async create(@Body() createCategoriaDto: CreateCategoriaDto) {
+    return await this.categoriasService.create(createCategoriaDto);
   }
 
   @Get()

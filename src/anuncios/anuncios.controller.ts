@@ -1,14 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, BadRequestException, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, BadRequestException, UseInterceptors, UploadedFile, UseGuards } from '@nestjs/common';
 import { AnunciosService } from './anuncios.service';
 import { CreateAnuncioDto } from './dto/create-anuncio.dto';
 import { UpdateAnuncioDto } from './dto/update-anuncio.dto';
-import { ApiBody, ApiConsumes, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PaginateDto } from './dto/pagination-dto';
 import { diskStorage } from 'multer';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { extname } from 'path';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @ApiTags('anuncios')
+@ApiBearerAuth()
 @Controller('anuncios')
 export class AnunciosController {
   constructor(private readonly anunciosService: AnunciosService) {}
@@ -16,10 +18,15 @@ export class AnunciosController {
   // Controlador para crear un nuevo anuncio
   @Post()
   @ApiConsumes('multipart/form-data')
+  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Crea un nuevo anuncio',
     description: 'El anuncio se crea a traves de un form-data',
   })
+  @ApiResponse({ status: 201, description: 'Operación exitosa', type: String })
+  @ApiResponse({ status: 400, description: 'Solicitud incorrecta' })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
+ 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -49,38 +56,68 @@ export class AnunciosController {
       },
     }),
   )
-  create(@Body() createAnuncioDto: CreateAnuncioDto, @UploadedFile() file) {
+  async create(@Body() createAnuncioDto: CreateAnuncioDto, @UploadedFile() file) {
     // Convierte el precio a número y agrega el nombre del archivo al DTO
     createAnuncioDto.precio = +createAnuncioDto.precio;
     createAnuncioDto.imagen = file.filename; // Asigna el nombre del archivo cargado al DTO
     
     // Llama al servicio para crear un nuevo anuncio
-    return this.anunciosService.create(createAnuncioDto);
+    return await this.anunciosService.create(createAnuncioDto);
   }
 
   // Controlador para obtener todos los anuncios con opciones de paginación
+  
+  @UseGuards(AuthGuard)
+  @ApiOperation({
+    summary: 'Obtiene todos los anuncios de la bas datos',
+    description: 'Utilice los parámetros limit y page para paginar',
+  })
+  @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
   @ApiQuery({ name: 'limit', required: false, type: Number })
   @ApiQuery({ name: 'page', required: false, type: Number })
   @Get()
-  findAll(@Query() query: PaginateDto) {
-    return this.anunciosService.findAll(query);
+  async findAll(@Query() query: PaginateDto) {
+    return await this.anunciosService.findAll(query);
   }
 
   // Controlador para obtener un anuncio por ID
+  @UseGuards(AuthGuard)
+  @ApiOperation({
+    summary: 'Obtiene un anuncio por su #Id',
+    description: 'Obtiene un anuncio por su #Id',
+  })
+  @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.anunciosService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.anunciosService.findOne(+id);
   }
 
   // Controlador para actualizar un anuncio por ID
+  @UseGuards(AuthGuard)
+  @ApiOperation({
+    summary: 'Modifica un anuncio por su #Id',
+    description: 'Modifica un anuncio por su #Id',
+  })
+  @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
+  @ApiResponse({ status: 400, description: 'Solicitud incorrecta' })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAnuncioDto: UpdateAnuncioDto) {
-    return this.anunciosService.update(+id, updateAnuncioDto);
+  async update(@Param('id') id: string, @Body() updateAnuncioDto: UpdateAnuncioDto) {
+    return await this.anunciosService.update(+id, updateAnuncioDto);
   }
 
   // Controlador para eliminar un anuncio por ID
+  @UseGuards(AuthGuard)
+  @ApiOperation({
+    summary: 'Borra un anuncio por su #Id',
+    description: 'Borra un anuncio por su #Id',
+  })
+  @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.anunciosService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.anunciosService.remove(+id);
   }
 }
