@@ -25,7 +25,7 @@ export class CategoriasController {
   }
 
   @Get()
-  @UseGuards(AuthGuard)
+  
   @ApiOperation({
     summary: 'Obtiene todas las categorias.',
     description: 'Obtiene todas las categorías.',
