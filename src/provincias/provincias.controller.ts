@@ -13,7 +13,6 @@ export class ProvinciasController {
 
  
   @Get()
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Devuelve todas las provincias de España.',
     description: 'Devuelve todas las provincias de España.',
