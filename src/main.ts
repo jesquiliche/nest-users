@@ -9,6 +9,8 @@ async function bootstrap() {
 
   app.setGlobalPrefix("api/v1");
 
+  app.enableCors();
+
   const config = new DocumentBuilder()
     .setTitle('Anuncios API')
     .setDescription('API de anuncios de artículos de segunda mano.\n Jesús Quintana')
