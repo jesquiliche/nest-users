@@ -6,11 +6,12 @@ import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagg
 import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @ApiTags('poblaciones')
-@ApiBearerAuth()
+
 @Controller('poblaciones')
 export class PoblacionesController {
   constructor(private readonly poblacionesService: PoblacionesService) {}
 
+  @ApiBearerAuth()
   @Post()
   @UseGuards(AuthGuard)
   @ApiOperation({
@@ -25,7 +26,6 @@ export class PoblacionesController {
   }
 
   @Get()
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Devuelve todas las poblaciones.',
     description: 'Devuelve todas las poblaciones.',
@@ -37,7 +37,6 @@ export class PoblacionesController {
   }
 
   @Get(':codigo')
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Devuelve la población correspondiente al código de la solicitud.',
     description: 'Devuelve la población correspondiente al código de la solicitud.',
@@ -59,6 +58,7 @@ export class PoblacionesController {
     return await this.poblacionesService.findProv(cod_provincia);
   }
 
+  @ApiBearerAuth()
   @Patch(':codigo')
   @UseGuards(AuthGuard)
   @ApiOperation({
@@ -72,6 +72,7 @@ export class PoblacionesController {
     return await this.poblacionesService.update(codigo, updatePoblacioneDto);
   }
 
+  @ApiBearerAuth()
   @Delete(':id')
   @UseGuards(AuthGuard)
   @ApiOperation({
