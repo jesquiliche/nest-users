@@ -6,12 +6,12 @@ import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagg
 import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @ApiTags('estados')
-@ApiBearerAuth()
 @Controller('estados')
 export class EstadosController {
   constructor(private readonly estadosService: EstadosService) {}
 
   @Post()
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Crea un estado',
@@ -25,30 +25,28 @@ export class EstadosController {
   }
 
   @Get()
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Devuelve todos los estados disponibles',
     description: 'Devuelve todos los estados disponibles',
   })
   @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
-  @ApiResponse({ status: 401, description: 'No autorizado' })
   async findAll() {
     return await this.estadosService.findAll();
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Devuelve un estado determinado por su #Id',
     description: 'Devuelve un estado determinado por su #Id',
   })
   @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
-  @ApiResponse({ status: 401, description: 'No autorizado' })
+  @ApiResponse({ status: 404, description: 'No encontrado' })
   async findOne(@Param('id') id: string) {
     return await this.estadosService.findOne(+id);
   }
 
   @Patch(':id')
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Modifica un estado determinado por su #Id',
@@ -61,6 +59,7 @@ export class EstadosController {
   }
 
   @Delete(':id')
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Borra un estado determinado por su #Id',
@@ -73,6 +72,7 @@ export class EstadosController {
   }
 
   @Post('poblar') // Ruta personalizada para poblar las poblaciones
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Borra un estado determinado por su #Id',
