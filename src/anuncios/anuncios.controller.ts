@@ -10,13 +10,14 @@ import { extname } from 'path';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @ApiTags('anuncios')
-@ApiBearerAuth()
+
 @Controller('anuncios')
 export class AnunciosController {
   constructor(private readonly anunciosService: AnunciosService) {}
 
   // Controlador para crear un nuevo anuncio
   @Post()
+  @ApiBearerAuth()
   @ApiConsumes('multipart/form-data')
   @UseGuards(AuthGuard)
   @ApiOperation({
@@ -26,7 +27,6 @@ export class AnunciosController {
   @ApiResponse({ status: 201, description: 'Operación exitosa', type: String })
   @ApiResponse({ status: 400, description: 'Solicitud incorrecta' })
   @ApiResponse({ status: 401, description: 'No autorizado' })
- 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -67,7 +67,7 @@ export class AnunciosController {
 
   // Controlador para obtener todos los anuncios con opciones de paginación
   
-  @UseGuards(AuthGuard)
+  @Get()
   @ApiOperation({
     summary: 'Obtiene todos los anuncios de la bas datos',
     description: 'Utilice los parámetros limit y page para paginar',
@@ -76,13 +76,11 @@ export class AnunciosController {
   @ApiResponse({ status: 401, description: 'No autorizado' })
   @ApiQuery({ name: 'limit', required: false, type: Number })
   @ApiQuery({ name: 'page', required: false, type: Number })
-  @Get()
-  async findAll(@Query() query: PaginateDto) {
+   async findAll(@Query() query: PaginateDto) {
     return await this.anunciosService.findAll(query);
   }
 
   // Controlador para obtener un anuncio por ID
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Obtiene un anuncio por su #Id',
     description: 'Obtiene un anuncio por su #Id',
@@ -95,6 +93,7 @@ export class AnunciosController {
   }
 
   // Controlador para actualizar un anuncio por ID
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Modifica un anuncio por su #Id',
