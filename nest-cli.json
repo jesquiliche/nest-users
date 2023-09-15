@@ -7,7 +7,7 @@
     "plugins": ["@nestjs/swagger"],
     "assets":[ 
     {
-     "include": "public/**"
+     "include": "client/**"
     }]
   }
    
