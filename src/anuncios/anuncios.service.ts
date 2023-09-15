@@ -108,11 +108,11 @@ export class AnunciosService {
     if (params.limit && params.page) {
       // Inicializa el queryBuilder con joins para las relaciones
       let dynamicQueryBuilder = queryBuilder
-        .innerJoinAndSelect('anuncios.subcategoria', 'subcategoria')
-        .innerJoinAndSelect('subcategoria.categoria', 'categoria')
-        .innerJoinAndSelect('anuncios.estado', 'estado')
-        .innerJoinAndSelect('anuncios.user', 'user')
-        .innerJoinAndSelect('anuncios.poblacion', 'poblacion');
+        .innerJoin('anuncios.subcategoria', 'subcategoria')
+        .innerJoin('subcategoria.categoria', 'categoria')
+        .innerJoin('anuncios.estado', 'estado')
+        .innerJoin('anuncios.user', 'user')
+        .innerJoin('anuncios.poblacion', 'poblacion');
 
       // Aplica el filtro de subcategoría si se proporciona
       if (params.subcategoria) {
