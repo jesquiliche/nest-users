@@ -31,7 +31,7 @@ import { ConfigModule } from "@nestjs/config";
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'src/public/images'), // Ruta a la carpeta 'public' en la raíz del proyecto
-    
+      serveRoot: '/', // Ruta base para servir archivos estáticos
     }),
     UsersModule,
     AuthModule,
