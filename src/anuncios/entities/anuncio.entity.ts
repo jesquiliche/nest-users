@@ -34,22 +34,13 @@ export class Anuncio {
   @Column({ length: 15 })
   telefono: string;
 
-  @ManyToOne(() => Subcategoria, (subcategoria) => subcategoria.anuncios, {
-    // cascade: true,
-    eager: true, // para que traiga las raza al hacer un findOne
-  })
+  @ManyToOne(() => Subcategoria, (subcategoria) => subcategoria.anuncios)
   subcategoria: Subcategoria;
 
-  @ManyToOne(() => Estado, (estado) => estado.anuncios, {
-    // cascade: true,
-    eager: true, // para que traiga las raza al hacer un findOne
-  })
+  @ManyToOne(() => Estado, (estado) => estado.anuncios)
   estado: Estado;
 
-  @ManyToOne(() => User, (user) => user.anuncios, {
-    // cascade: true,
-    eager: true, // para que traiga las raza al hacer un findOne
-  })
+  @ManyToOne(() => User, (user) => user.anuncios, )
   user: User;
 
   @Column({ length: 2 })

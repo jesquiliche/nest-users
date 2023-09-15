@@ -81,18 +81,19 @@ export class AnunciosController {
   }
 
   // Controlador para obtener un anuncio por ID
+  @Get(':id')
   @ApiOperation({
     summary: 'Obtiene un anuncio por su #Id',
     description: 'Obtiene un anuncio por su #Id',
   })
   @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
   @ApiResponse({ status: 401, description: 'No autorizado' })
-  @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.anunciosService.findOne(+id);
   }
 
   // Controlador para actualizar un anuncio por ID
+  @Patch(':id')
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
@@ -102,12 +103,12 @@ export class AnunciosController {
   @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
   @ApiResponse({ status: 400, description: 'Solicitud incorrecta' })
   @ApiResponse({ status: 401, description: 'No autorizado' })
-  @Patch(':id')
   async update(@Param('id') id: string, @Body() updateAnuncioDto: UpdateAnuncioDto) {
     return await this.anunciosService.update(+id, updateAnuncioDto);
   }
 
   // Controlador para eliminar un anuncio por ID
+  @Delete(':id')
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Borra un anuncio por su #Id',
@@ -115,7 +116,6 @@ export class AnunciosController {
   })
   @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
   @ApiResponse({ status: 401, description: 'No autorizado' })
-  @Delete(':id')
   async remove(@Param('id') id: string) {
     return await this.anunciosService.remove(+id);
   }
