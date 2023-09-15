@@ -30,8 +30,8 @@ import { ConfigModule } from "@nestjs/config";
       synchronize: true,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'src/public/images'), // Ruta a la carpeta 'public' en la raíz del proyecto
-      serveRoot: '/images', // Ruta base para servir archivos estáticos
+      rootPath: join(__dirname, '..', 'src/public/'), // Ruta a la carpeta 'public' en la raíz del proyecto
+    
     }),
     UsersModule,
     AuthModule,
