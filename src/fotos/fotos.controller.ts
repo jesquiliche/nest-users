@@ -8,12 +8,12 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @ApiTags('fotos')
-@ApiBearerAuth()
 @Controller('fotos')
 export class FotosController {
   constructor(private readonly fotosService: FotosService) {}
 
   @Post('upload')
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Sube una foto asociada a anuncio al servidor',
@@ -57,7 +57,6 @@ export class FotosController {
 
 
   @Get()
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Devuelve todas las fotos',
     description: 'Devuelve todas las fotos',
@@ -69,7 +68,6 @@ export class FotosController {
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Obtiene una foto por su #Id',
     description: 'Obtiene una foto por su #Id',
@@ -83,7 +81,7 @@ export class FotosController {
     }
   }
 
-
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Borra una foto identificada por su #Id',
