@@ -34,13 +34,17 @@ export class Anuncio {
   @Column({ length: 15 })
   telefono: string;
 
-  @ManyToOne(() => Subcategoria, (subcategoria) => subcategoria.anuncios)
+  @ManyToOne(() => Subcategoria, (subcategoria) => subcategoria.anuncios, {
+    eager: true,
+  })
   subcategoria: Subcategoria;
 
   @ManyToOne(() => Estado, (estado) => estado.anuncios)
   estado: Estado;
 
-  @ManyToOne(() => User, (user) => user.anuncios, )
+  @ManyToOne(() => User, (user) => user.anuncios, {
+    eager: true,
+  })
   user: User;
 
   @Column({ length: 2 })
@@ -49,11 +53,15 @@ export class Anuncio {
   @Column({ length: 5 })
   cod_postal: string;
 
-  @ManyToOne(() => Poblacion, (poblacion) => poblacion.anuncios)
+  @ManyToOne(() => Poblacion, (poblacion) => poblacion.anuncios, {
+    eager: true,
+  })
   @JoinColumn({ name: 'cod_postal', referencedColumnName: 'codigo' })
   poblacion: Poblacion;
 
-  @OneToMany(() => Foto, (foto) => foto.anuncio)
+  @OneToMany(() => Foto, (foto) => foto.anuncio, {
+    eager: true,
+  })
   foto: Foto[];
 
   @DeleteDateColumn()
