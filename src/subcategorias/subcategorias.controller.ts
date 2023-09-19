@@ -7,13 +7,13 @@ import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagg
 import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @ApiTags('subcategorias')
-@ApiBearerAuth()
 @Controller('subcategorias')
 export class SubcategoriasController {
   constructor(private readonly subcategoriasService: SubcategoriasService) {}
   
 
   @Post()
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Crea una nueva subcategoría.',
@@ -61,6 +61,7 @@ export class SubcategoriasController {
   }
 
   @Patch(':id')
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Modifica una subcategoría',
@@ -75,6 +76,7 @@ export class SubcategoriasController {
   }
 
   @Delete(':id')
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Borra una subcategoría',
@@ -88,6 +90,7 @@ export class SubcategoriasController {
   }
 
   @Post('poblar') // Ruta personalizada para poblar las poblaciones
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Rellena la tabla de subcategorías',

@@ -6,7 +6,6 @@ import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagg
 import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @ApiTags('provincias')
-@ApiBearerAuth()
 @Controller('provincias')
 export class ProvinciasController {
   constructor(private readonly provinciasService: ProvinciasService) {}
@@ -24,6 +23,7 @@ export class ProvinciasController {
   }
  
   @Post('poblar') // Ruta personalizada para poblar las poblaciones
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Rellena la tabla de provincias de manera automática',

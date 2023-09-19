@@ -6,12 +6,12 @@ import { AuthGuard } from 'src/auth/guard/auth.guard';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('categorias')
-@ApiBearerAuth()
 @Controller('categorias')
 export class CategoriasController {
   constructor(private readonly categoriasService: CategoriasService) {}
 
-  @Post()
+  @Post()@
+  ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Crea una nueva categoría.',
@@ -25,7 +25,6 @@ export class CategoriasController {
   }
 
   @Get()
-  
   @ApiOperation({
     summary: 'Obtiene todas las categorias.',
     description: 'Obtiene todas las categorías.',
@@ -36,7 +35,6 @@ export class CategoriasController {
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Obtiene una categoría por su Id.',
     description: 'Obtiene una categoría por su Id.',
@@ -48,7 +46,6 @@ export class CategoriasController {
   }
 
   @Get(':id/subcategorias')
-  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Obtiene todas los subcategorías de una categoría especifica.',
     description: 'Obtiene todas los subcategorías de una categoría especifica.',
@@ -69,6 +66,7 @@ export class CategoriasController {
     }
   }
   @Patch(':id')
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Actualiza la categoría con el Id especificado',
@@ -82,6 +80,7 @@ export class CategoriasController {
   }
 
   @Delete(':id')
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Actualiza la categoría con el Id especificado',
@@ -95,6 +94,7 @@ export class CategoriasController {
 
   
   @Post('poblar') // Ruta personalizada para poblar las poblaciones
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Llama a una rutina que rellena la tabla de Categorías',
