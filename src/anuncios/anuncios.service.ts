@@ -188,7 +188,7 @@ export class AnunciosService {
           dynamicQueryBuilder = dynamicQueryBuilder.andWhere(
             'anuncios.createdAt >= :fecha_desde',
             {
-              fecha_desde: params.fecha_desde,
+              fecha_desde: new Date(params.fecha_desde),
             },
           );
         }
@@ -198,7 +198,7 @@ export class AnunciosService {
           dynamicQueryBuilder = dynamicQueryBuilder.andWhere(
             'anuncios.createdAt <= :fecha_hasta',
             {
-              fecha_hasta: params.fecha_hasta,
+              fecha_hasta: new Date(params.fecha_hasta),
             },
           );
         }
