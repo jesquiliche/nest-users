@@ -59,9 +59,6 @@ export class Anuncio {
   @JoinColumn({ name: 'cod_postal', referencedColumnName: 'codigo' })
   poblacion: Poblacion;
 
-  @OneToMany(() => Foto, (foto) => foto.anuncio, {
-    eager: true,
-  })
   foto: Foto[];
 
   @DeleteDateColumn()
