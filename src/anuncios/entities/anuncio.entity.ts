@@ -39,7 +39,9 @@ export class Anuncio {
   })
   subcategoria: Subcategoria;
 
-  @ManyToOne(() => Estado, (estado) => estado.anuncios)
+  @ManyToOne(() => Estado, (estado) => estado.anuncios,{
+    eager: true
+  })
   estado: Estado;
 
   @ManyToOne(() => User, (user) => user.anuncios, {
