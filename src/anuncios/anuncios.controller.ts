@@ -18,7 +18,7 @@ export class AnunciosController {
   // Controlador para crear un nuevo anuncio
   @Post()
   @ApiBearerAuth()
-  @ApiConsumes('multipart/form-data')
+
   @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Crea un nuevo anuncio',
