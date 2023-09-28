@@ -37,17 +37,15 @@ export class AuthService {
     const payload = { email: user.email, id: user.id };
 
     // Define el tiempo de expiración del token (por ejemplo, 1 hora)
-    const expiresIn = '5m';
-    const name=user.name;
+    const expiresIn = '5h';
+    //const name=user.name;
 
     const token = await this.jwtService.signAsync(payload, { expiresIn });
 
     return {
       token,
       expiresIn, 
-      email,
-      name  
-
-    };
+      email
+     };
   }
 }
