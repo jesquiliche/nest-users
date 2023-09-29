@@ -31,7 +31,7 @@ export class AnunciosController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: (req, file, cb) => {
-          cb(null, 'src/public/images'); // Directorio de destino para guardar la imagen
+          cb(null, 'client/images'); // Directorio de destino para guardar la imagen
         },
         filename: (req, file, cb) => {
           // Lógica para generar el nombre del archivo
