@@ -214,7 +214,7 @@ export class AnunciosService {
           (+params.page - 1) * +params.limit,
         );
 
-      dynamicQueryBuilder = dynamicQueryBuilder.take(+params.limit);
+      dynamicQueryBuilder = dynamicQueryBuilder.orderBy('anuncios.id', 'DESC').take(+params.limit);
 
       // Obtiene los resultados finales
       const result = await dynamicQueryBuilder.getMany();
