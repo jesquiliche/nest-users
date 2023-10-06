@@ -12,9 +12,12 @@ export class ProvinciasService {
       private provinciasRepository: Repository<Provincia>,
     ) {}
 
-  async findAll() {
-    return await this.provinciasRepository.find();
-  }
+    async findAll() {
+      return await this.provinciasRepository
+        .createQueryBuilder('provincia')
+        .orderBy('provincia.nombre', 'ASC')
+        .getMany();
+    }
 
   async poblar(): Promise<any> {
     for (const data of provincias) {

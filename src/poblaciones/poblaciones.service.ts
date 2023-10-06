@@ -25,9 +25,8 @@ export class PoblacionesService {
 
   async findOne(codigo: string): Promise<Poblacion> {
     const poblacion = await this.poblacionesRepository.findOne({
-      where: [
-        { codigo },
-      ]});
+      where: { codigo },
+    });
     if (!poblacion) {
       throw new NotFoundException(`Población con código ${codigo} no encontrada`);
     }
@@ -35,13 +34,13 @@ export class PoblacionesService {
   }
 
   async findProv(cod_provincia: string) {
-    const poblaciones = await this.poblacionesRepository.find({
-      where: [
-        { cod_provincia },
-      ]});
+    const poblaciones = await this.poblacionesRepository
+      .createQueryBuilder('poblacion')
+      .where('poblacion.cod_provincia = :cod_provincia', { cod_provincia })
+      .orderBy('poblacion.nombre', 'ASC')
+      .getMany();
     return poblaciones;
   }
-
 
   async update(codigo: string, updatePoblacioneDto: UpdatePoblacioneDto): Promise<Poblacion> {
     const poblacion = await this.poblacionesRepository.preload({
@@ -56,9 +55,8 @@ export class PoblacionesService {
 
   async remove(codigo: string): Promise<void> {
     const poblacion = await this.poblacionesRepository.findOne({
-      where: [
-        { codigo },
-      ]});
+      where: { codigo },
+    });
       
     if (!poblacion) {
       throw new NotFoundException(`Población con ID ${codigo} no encontrada`);
