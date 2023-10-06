@@ -85,6 +85,7 @@ export class SubcategoriasService {
     const subcategorias = await this.subcategoriasRepository
       .createQueryBuilder('subcategoria')
       .where('subcategoria.categoriaId = :categoriaId', { categoriaId: categoriaId })
+        .orderBy('subcategoria.nombre','ASC')
       .getMany();
 
     if (!subcategorias || subcategorias.length === 0) {
