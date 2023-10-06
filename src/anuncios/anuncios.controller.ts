@@ -38,7 +38,7 @@ export class AnunciosController {
           const fileExtension = extname(file.originalname).toLowerCase();
         
           //Comprobar que es una extensión valiad
-          if (!['.jpg', '.jpeg', '.png', '.gif'].includes(fileExtension)) {
+          if (!['.jpg', '.jpeg', '.png', '.gif','webp'].includes(fileExtension)) {
             return cb(new BadRequestException('El archivo debe ser una imagen (jpg, jpeg, png o gif). ' + file.originalname), null);
           }
 
