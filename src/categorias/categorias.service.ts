@@ -1,32 +1,33 @@
-import { Injectable,NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCategoriaDto } from './dto/create-categoria.dto';
 import { UpdateCategoriaDto } from './dto/update-categoria.dto';
 import { Categoria } from './entities/categoria.entity';
 import { Subcategoria } from 'src/subcategorias/entities/subcategoria.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { categoriasData } from 'src/data/categorias'
+import { categoriasData } from 'src/data/categorias';
 
 @Injectable()
 export class CategoriasService {
   
-    constructor(
-      @InjectRepository(Categoria)
-      private categoriasRepository: Repository<Categoria>,
+  constructor(
+    @InjectRepository(Categoria)
+    private categoriasRepository: Repository<Categoria>,
 
-      @InjectRepository(Subcategoria)
-      private subcategoriasRepository: Repository<Subcategoria>,
-    ) {}
-  
+    @InjectRepository(Subcategoria)
+    private subcategoriasRepository: Repository<Subcategoria>,
+  ) {}
 
   async create(createCategoriaDto: CreateCategoriaDto) {
-    const categoria =this.categoriasRepository.create(createCategoriaDto);
+    const categoria = this.categoriasRepository.create(createCategoriaDto);
     return await this.categoriasRepository.save(categoria);
-
   }
 
   async findAll() {
-    return await this.categoriasRepository.find();
+    return await this.categoriasRepository
+      .createQueryBuilder('categoria')
+      .orderBy('categoria.titulo', 'ASC')
+      .getMany();
   }
 
   async findOne(id: number) {
@@ -36,7 +37,7 @@ export class CategoriasService {
   async obtenerSubcategoriasDeCategoria(categoriaId: number): Promise<Subcategoria[]> {
     const subcategorias = await this.subcategoriasRepository
       .createQueryBuilder('subcategoria')
-      .where('subcategoria.categoriaId = :categoriaId', { categoriaId: categoriaId })
+      .where('subcategoria.categoriaId = :categoriaId', { categoriaId })
       .getMany();
 
     if (!subcategorias || subcategorias.length === 0) {
@@ -45,7 +46,6 @@ export class CategoriasService {
 
     return subcategorias;
   }
-
 
   async update(id: number, updateCategoriaDto: UpdateCategoriaDto) {
     return await this.categoriasRepository.update(id, updateCategoriaDto);
