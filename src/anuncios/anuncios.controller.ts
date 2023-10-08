@@ -38,8 +38,8 @@ export class AnunciosController {
           const fileExtension = extname(file.originalname).toLowerCase();
         
           //Comprobar que es una extensión valiad
-          if (!['.jpg', '.jpeg', '.png', '.gif','.webp','.avif'].includes(fileExtension)) {
-            return cb(new BadRequestException('El archivo debe ser una imagen (jpg, jpeg, webp, avif png o gif). ' + file.originalname), null);
+          if (!['.jpg', '.jpeg', '.png', '.gif','.webp'].includes(fileExtension)) {
+            return cb(new BadRequestException('El archivo debe ser una imagen (jpg, jpeg, webp, png o gif). ' + file.originalname), null);
           }
 
           const randomName = Array(32)

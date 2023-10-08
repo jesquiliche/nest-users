@@ -233,8 +233,9 @@ export class AnunciosService {
   }
 
   async findOne(id: number) {
-    return await this.anunciosRepository.findOneBy({ id });
-  }
+  return await this.anunciosRepository.findOne({ where: { id } });
+}
+
 
   async update(id: number, updateAnuncioDto: UpdateAnuncioDto) {
     const {
