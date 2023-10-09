@@ -26,7 +26,7 @@ export class FotosController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: (req, file, cb) => {
-          cb(null, 'src/public/images'); // Directorio de destino
+          cb(null, 'client/images'); // Directorio de destino
         },
         filename: (req, file, cb) => {
           const fileExtension = path.extname(file.originalname).toLowerCase();
