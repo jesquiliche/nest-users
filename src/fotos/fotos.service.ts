@@ -41,6 +41,7 @@ export class FotosService {
     return await this.fotosRepository.findOneBy({id});
   }
 
+  
   async findAllByAnuncioId(anuncio_id: number): Promise<Foto[]> {
     return await this.fotosRepository.find({ where: { anuncio_id } });
   }
