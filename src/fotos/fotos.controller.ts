@@ -89,10 +89,11 @@ export class FotosController {
   @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
   @ApiResponse({ status: 401, description: 'No autorizado' })
   async findOneByAnuncio(@Param('anuncio_id') anuncio_id: string) {
-    const foto=await this.fotosService.findByIdAnuncio(+anuncio_id);
-    if(!foto){
+    const fotos=await this.fotosService.findByIdAnuncio(+anuncio_id);
+    if(!fotos){
       throw new BadRequestException(`Foto de anuncio id ${anuncio_id} no encontradas`);
     }
+    return fotos;
   }
 
 
