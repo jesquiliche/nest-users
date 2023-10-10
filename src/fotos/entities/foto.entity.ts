@@ -9,9 +9,12 @@ export class Foto {
     @Column({ type: 'varchar', length: 255, nullable:true })
     path?: string;
 
+    @Column()
+    anuncio_id:number;
+
     @ManyToOne(() =>Anuncio, anuncio => anuncio.foto,{
         // cascade: true,
-        eager: true, 
+        eager: false, 
       })
     anuncio: Anuncio;
 }

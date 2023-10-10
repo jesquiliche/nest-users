@@ -81,6 +81,21 @@ export class FotosController {
     }
   }
 
+  @Get('/anuncio/:anuncio_id')
+  @ApiOperation({
+    summary: 'Obtiene todas las fotos de un anuncio',
+    description: 'Obtiene todas las fotos de un anuncio',
+  })
+  @ApiResponse({ status: 200, description: 'Operación exitosa', type: String })
+  @ApiResponse({ status: 401, description: 'No autorizado' })
+  async findOneByAnuncio(@Param('anuncio_id') anuncio_id: string) {
+    const foto=await this.fotosService.findByIdAnuncio(+anuncio_id);
+    if(!foto){
+      throw new BadRequestException(`Foto de anuncio id ${anuncio_id} no encontradas`);
+    }
+  }
+
+
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({

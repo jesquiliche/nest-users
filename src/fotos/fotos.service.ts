@@ -41,11 +41,15 @@ export class FotosService {
     return await this.fotosRepository.findOneBy({id});
   }
 
-  update(id: number, updateFotoDto: UpdateFotoDto) {
+  async findByIdAnuncio(anuncio_id:number){
+    return await this.fotosRepository.findOneBy({anuncio_id});
+  }
+
+  async update(id: number, updateFotoDto: UpdateFotoDto) {
     return `This action updates a #${id} foto`;
   }
 
-  remove(id: number) {
+ async  remove(id: number) {
     return `This action removes a #${id} foto`;
   }
 }
