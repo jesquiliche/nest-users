@@ -31,7 +31,7 @@ export class FotosController {
         filename: (req, file, cb) => {
           const fileExtension = path.extname(file.originalname).toLowerCase();
 
-          if (!['.jpg', '.jpeg', '.png', '.gif','webp'].includes(fileExtension)) {
+          if (!['.jpg', '.jpeg', '.png', '.gif','.webp'].includes(fileExtension)) {
             return cb(new BadRequestException('El archivo debe ser una imagen (jpg, jpeg, png, webp o gif).'),null);
           }
 
