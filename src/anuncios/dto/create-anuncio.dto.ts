@@ -55,6 +55,7 @@ export class CreateAnuncioDto {
 
   @IsNotEmpty()
   @IsString()
+  @MaxLength(15)
   @ApiProperty({ example: '123456789' })
   telefono: string;
 
