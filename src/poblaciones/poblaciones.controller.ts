@@ -86,6 +86,7 @@ export class PoblacionesController {
     return await this.poblacionesService.remove(codigo);
   }
 
+  @ApiBearerAuth()
   @Post('poblar') // Ruta personalizada para poblar las poblaciones
   @UseGuards(AuthGuard)
   @ApiOperation({
